@@ -49,13 +49,13 @@ $('#table_adder').click(function () {
   var n = $(".tbl").length + 1;
   if (desk_size_small) {
       extra_styling = ";width:150px;height:75px"
-      offset = 75
+      // offset = 75
   }
   if (desk_size_large) {
       extra_styling = ";width:450px;height:225px"
       offset = 225
   }
-  var table = '<div id="table_' + n + '"class="tbl" style="display:absolute;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
+  var table = '<div id="table_' + n + '"class="tbl" style="display:absolute;float:right;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
   table += '<img class="img_tbl" src="public/images/table.png" />';
   table += '</div>';
 
@@ -67,16 +67,37 @@ $('#student_adder').click(function () {
   var offset = 100
   var extra_styling = "";
   var n = $(".student").length + 1;
-  var student = '<div id="student_' + n + '"class="student" style="display:absolute;z-index:' + (n+100) + ';margin-top:-' + offset + 'px">';
-  student += '<img class="img_student" style="border:1px solid black" src="http://www.wpclipart.com/office/people/business_people_icons/business_person_T.png" />';
+  var student = '<div id="student_' + n + '"class="student" style="display:absolute;float:right;z-index:' + (n+100) + ';margin-top:-' + offset + 'px">';
+  student += '<img class="img_student" src="http://www.wpclipart.com/office/people/business_people_icons/business_person_T.png" />';
   student += '</div>';
   append_draggable(student, '.student', "student_" + n)
     
 });
 
 $('#output_positions').click( function(){
-
+  alert("Boom, data...soon")
+  //TODO - output top and left values for all placed items.
 });
+
+$('#hide_menu').click( function(){
+  $('#menu').slideUp();
+  $('#show_menu').fadeIn();
+});
+
+$('#show_menu').click( function(){
+  $('#menu').slideDown();
+  $( this ).fadeOut();
+});
+
+$('#rotate_last_desk').click( function(){
+  var n = $(".tbl").length;
+  var to_rotate = '#table_' + n;
+  var new_height = $( to_rotate ).css("width")
+  var new_width = $( to_rotate ).css("height")
+  $( to_rotate ).css("height", new_height)
+  $( to_rotate ).css("width", new_width)
+});
+
 
 function append_draggable(html, obj_class, save_id) {
   $('#classroom').append(html)
