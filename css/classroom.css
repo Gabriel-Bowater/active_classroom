@@ -1,3 +1,8 @@
+body {
+	background-image: url('http://1.bp.blogspot.com/-gFxl7iFbhN0/U0beLdwg9oI/AAAAAAAAPDY/BBNB0uLKWW4/s1600/seamless-textures-PARQUET-WOOD-FLOORING-%2329b.jpg');
+	background-size: 450px;
+}
+
 #img_del {
   float: right;
 }
@@ -31,10 +36,9 @@
 }
 
 #classroom {
-  background-color: grey;
   /*padding-top: 100px;*/
   /*padding-left: 100px;*/
-  height: 800px;
+  height: 650px;
   margin-left: 100px;
   margin-right: 80px;
   margin-top: 225px;
@@ -46,6 +50,9 @@
 
 .menu_item {
 	cursor: pointer;
+	background-color: rgba(200,200,200,0.5);	
+	padding:3px;
+	border-radius: 2px;
 }
 
 #tracker_console {

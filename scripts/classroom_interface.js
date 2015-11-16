@@ -56,7 +56,7 @@ $('#table_adder').click(function () {
       offset = 225
   }
   var table = '<div id="table_' + n + '"class="tbl" style="display:absolute;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
-  table += '<img class="img_tbl" style="border:1px solid black" src="http://cdn.playbuzz.com/cdn/75870e24-e1bc-4bcc-98c2-72c8e98ed194/358c150d-d33e-43b1-8bd5-dbae22014e8f.jpg" />';
+  table += '<img class="img_tbl" src="public/images/table.png" />';
   table += '</div>';
 
   append_draggable(table, '.tbl', "table_" + n )
@@ -80,7 +80,7 @@ $('#output_positions').click( function(){
 
 function append_draggable(html, obj_class, save_id) {
   $('#classroom').append(html)
-  tracking_info = '<tr id="positions_tracker_'+ save_id +'"> <td>drag x:</td><td><input type="text" id="x_' + save_id + '" class="console" value="0"/></td><td>drag y:</td><td><input type="text" id="y_' + save_id + '" class="console" value="0"/></td></tr>'
+  tracking_info = '<tr id="positions_tracker_'+ save_id +'"><td>'+ save_id + '</td> <td>drag x:</td><td><input type="text" id="x_' + save_id + '" class="console" value="0"/></td><td>drag y:</td><td><input type="text" id="y_' + save_id + '" class="console" value="0"/></td></tr>'
   $('#tracker_console').append(tracking_info)
 
   $(obj_class).draggable({
