@@ -55,7 +55,7 @@ $('#table_adder').click(function () {
       extra_styling = ";width:450px;height:225px"
       offset = 225
   }
-  var table = '<div id="table_' + n + '"class="tbl" style="display:absolute;float:right;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
+  var table = '<div id="table_' + n + '"class="tbl" style="display:absolute;float:left;z-index:' + n + ';margin-top:-' + offset + 'px;left:45%' + extra_styling + '">';
   table += '<img class="img_tbl" src="public/images/table.png" />';
   table += '</div>';
 
@@ -67,7 +67,7 @@ $('#student_adder').click(function () {
   var offset = 100
   var extra_styling = "";
   var n = $(".student").length + 1;
-  var student = '<div id="student_' + n + '"class="student" style="display:absolute;float:right;z-index:' + (n+100) + ';margin-top:-' + offset + 'px">';
+  var student = '<div id="student_' + n + '"class="student" style="display:absolute;float:left;z-index:' + (n+100) + ';margin-top:-' + offset + 'px;left:45%">';
   student += '<img class="img_student" src="http://www.wpclipart.com/office/people/business_people_icons/business_person_T.png" />';
   student += '</div>';
   append_draggable(student, '.student', "student_" + n)
@@ -101,7 +101,7 @@ $('#rotate_last_desk').click( function(){
 
 function append_draggable(html, obj_class, save_id) {
   $('#classroom').append(html)
-  tracking_info = '<tr id="positions_tracker_'+ save_id +'"><td>'+ save_id + '</td> <td>drag x:</td><td><input type="text" id="x_' + save_id + '" class="console" value="0"/></td><td>drag y:</td><td><input type="text" id="y_' + save_id + '" class="console" value="0"/></td></tr>'
+  tracking_info = '<tr id="positions_tracker_'+ save_id +'"><td>'+ save_id + '</td> <td>drag x:</td><td><input type="text" id="x_' + save_id + '" class="console" value="' + parseInt(parseInt($( '#classroom' ).css("width"))*0.45) + '"/></td><td>drag y:</td><td><input type="text" id="y_' + save_id + '" class="console" value="0"/></td></tr>'
   $('#tracker_console').append(tracking_info)
 
   $(obj_class).draggable({
