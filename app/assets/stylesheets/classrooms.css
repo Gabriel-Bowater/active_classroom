@@ -64,6 +64,10 @@ body {
 	border-radius: 2px;
 }
 
+.menu_icon img {
+  width: 30px;
+}
+
 #tracker_console {
 	/*display: none;*/
   background: white

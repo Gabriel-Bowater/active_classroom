@@ -46,37 +46,19 @@ $( document ).ready(function() {
 	});
 
 	$('#table_adder').click(function () {
-	  var offset = 150
-	  var extra_styling = "";
-	  var n = $(".tbl").length + 1;
-	  var size = "md"
-	  if (desk_size_small) {
-	      extra_styling = ";width:150px;height:75px"
-	      // offset = 75
-	      size = "sm"
-	  }
-	  if (desk_size_large) {
-	      extra_styling = ";width:450px;height:225px"
-	      offset = 225
-	      size - "lg"
-	  }
-	  var table = '<div id="table_' + n + '"class="tbl ' + size + ' horiz" style="display:absolute;float:right;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
-	  table += '<img class="img_tbl" src="/images/table.png" />';
-	  table += '</div>';
-
-	  append_draggable(table, '.tbl', "table_" + n )
-	    
+		add_table()
 	});
 
+	$("#table_adder_mini").click(function(){
+		add_table()
+	})
+
 	$('#student_adder').click(function () {
-	  var offset = 100
-	  var extra_styling = "";
-	  var n = $(".student").length + 1;
-	  var student = '<div id="student_' + n + '"class="student" style="display:absolute;float:left;z-index:' + (n+100) + ';margin-top:-' + offset + 'px">';
-	  student += '<img class="img_student" src="http://www.wpclipart.com/office/people/business_people_icons/business_person_T.png" />';
-	  student += '</div>';
-	  append_draggable(student, '.student', "student_" + n)
-	    
+		add_student()
+	});
+
+	$('#student_adder_mini').click(function () {
+		add_student()
 	});
 
 	$('#output_positions').click( function(){
@@ -116,12 +98,12 @@ $( document ).ready(function() {
 
 	$('#hide_menu').click( function(){
 	  $('#menu').slideUp();
-	  $('#show_menu').fadeIn();
+	  $('.mini_menu_item').fadeIn();
 	});
 
 	$('#show_menu').click( function(){
+	  $( '.mini_menu_item' ).fadeOut();
 	  $('#menu').slideDown();
-	  $( this ).fadeOut();
 	});
 
 	$('#rotate_last_desk').click( function(){
@@ -142,6 +124,37 @@ $( document ).ready(function() {
 
 	});
 
+	function add_table(){
+		var offset = 150
+	  var extra_styling = "";
+	  var n = $(".tbl").length + 1;
+	  var size = "md"
+	  if (desk_size_small) {
+	      extra_styling = ";width:150px;height:75px"
+	      // offset = 75
+	      size = "sm"
+	  }
+	  if (desk_size_large) {
+	      extra_styling = ";width:450px;height:225px"
+	      offset = 225
+	      size - "lg"
+	  }
+	  var table = '<div id="table_' + n + '"class="tbl ' + size + ' horiz" style="display:absolute;float:right;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
+	  table += '<img class="img_tbl" src="/images/table.png" />';
+	  table += '</div>';
+
+	  append_draggable(table, '.tbl', "table_" + n )
+	}
+
+	function add_student(){
+		var offset = 100
+	  var extra_styling = "";
+	  var n = $(".student").length + 1;
+	  var student = '<div id="student_' + n + '"class="student" style="display:absolute;float:left;z-index:' + (n+100) + ';margin-top:-' + offset + 'px">';
+	  student += '<img class="img_student" src="http://www.wpclipart.com/office/people/business_people_icons/business_person_T.png" />';
+	  student += '</div>';
+	  append_draggable(student, '.student', "student_" + n)
+	}
 
 	function append_draggable(html, obj_class, save_id) {
 	  $('#classroom').append(html)
