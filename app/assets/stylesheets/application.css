@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+#save-notice {
+	background: white;
+	border: black solid 2px;
+}

@@ -49,15 +49,18 @@ $( document ).ready(function() {
 	  var offset = 150
 	  var extra_styling = "";
 	  var n = $(".tbl").length + 1;
+	  var size = "md"
 	  if (desk_size_small) {
 	      extra_styling = ";width:150px;height:75px"
 	      // offset = 75
+	      size = "sm"
 	  }
 	  if (desk_size_large) {
 	      extra_styling = ";width:450px;height:225px"
 	      offset = 225
+	      size - "lg"
 	  }
-	  var table = '<div id="table_' + n + '"class="tbl" style="display:absolute;float:right;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
+	  var table = '<div id="table_' + n + '"class="tbl ' + size + ' horiz" style="display:absolute;float:right;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
 	  table += '<img class="img_tbl" src="/images/table.png" />';
 	  table += '</div>';
 
@@ -77,8 +80,38 @@ $( document ).ready(function() {
 	});
 
 	$('#output_positions').click( function(){
-	  alert("Boom, data...soon")
-	  //TODO - output top and left values for all placed items.
+		var tables = "";
+		var students = "";
+		var class_name = $('input[name=class_name').val()
+		//table csv format - id(CSS), size, orientation, left, top, z-index
+		$('.tbl').each(function(index) {
+			var table_classes = $( this ).attr('class').split(" ")
+			var orientation = 'horiz'
+		
+			if ($.inArray('vert', table_classes) > -1){
+				orientation = 'vert'
+			}
+			tables += ($(this).attr("id") + "," + table_classes[1] + "," + orientation + "," + $(this).css("left") + "," + $(this).css("top") + "," + $(this).css("z-index") + "," )
+		})
+		//student csv format - id(CSS), id(DB), left, top 
+		$('.student').each(function(index) {
+			// students += ("Student " + index + ": left - " + $(this).css("left") + ", top- " + $(this).css("top")  + ", id value " + $(this).attr("id") + "\n")
+			students += ($(this).attr("id") + "," +  " DB_ID " + "," + $(this).css("left") + "," + $(this).css("top") + "," + $(this).css("z-index") + ",")
+		})		
+		var response_num
+	  saving = $.post("/classrooms", {tables: tables, 
+	  																students: students, 
+	  																teacher_id: $('input[name=user_id').val(),
+	  																class_name: $('input[name=class_name').val()},
+	  																function( data ){
+	  																	response_num = data.responseText
+	  																	console.log(data.responseText)
+	  																})
+	  saving.done(function(result){
+	  	console.log("result: "+ result)
+	  	response_num = result
+	  	window.location.replace("/classrooms/"+result)
+	  })
 	});
 
 	$('#hide_menu').click( function(){
@@ -98,6 +131,15 @@ $( document ).ready(function() {
 	  var new_width = $( to_rotate ).css("height")
 	  $( to_rotate ).css("height", new_height)
 	  $( to_rotate ).css("width", new_width)
+	  var classes = $( to_rotate).attr('class').split(" ")
+	  if ($.inArray('horiz', classes) > -1){
+	  	$(to_rotate).removeClass('horiz')
+	  	$(to_rotate).addClass('vert')
+	  } else {
+	  	$(to_rotate).removeClass('vert')
+	  	$(to_rotate).addClass('horiz')
+	  }
+
 	});
 
 
@@ -123,8 +165,7 @@ $( document ).ready(function() {
 
 	  });
 	}
-
-    console.log( "ready!" );
+  console.log( "ready!" );
 });
 
         //'<tr id="positions_tracker'+ save_id +'"> <td>drag x:</td><td><input type="text" id="x' + save_id + '" class="console" /></td><td>drag y:</td><td><input type="text" id="y' + save_id + '" class="console" /></td></tr>''

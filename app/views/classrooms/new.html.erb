@@ -6,10 +6,17 @@
 	  <p>Desk Size:</p>
 	  <p> <a id="set_small" class="menu_item">Small</a>  <a id="set_medium" class="menu_item">Medium</a>  <a id="set_large" class="menu_item">Large</a> 
 	  </p>
-	  <p><a id="rotate_last_desk" class="menu_item">Rotate Last Desk</a> | <a id="output_positions" class="menu_item">Output Positions</a> | <a id="hide_menu" class="menu_item">Hide Menu</a></p>
+	  <p><a id="rotate_last_desk" class="menu_item">Rotate Last Desk</a> | <a id="output_positions" class="menu_item">Save and Lock Classroom</a> | <a id="hide_menu" class="menu_item">Hide Menu</a></p>
+	  <label>Classroom Name</label><input type="textfield" name="class_name">
 	</div>
-	<p><a id="show_menu" class="menu_item" style="display:none">Show Menu</a>
+	<p><a id="show_menu" class="menu_item" style="display:none">Show Menu</a><br>
+  <div class="notice" id="save-notice" style="display:none"><p id="save-notice-text"></p></div><br>
+	<img src="http://www.clker.com/cliparts/B/V/P/X/Z/e/thumbtack-pushpin-2-md.png" class="thumb-tack" id="thumb-tack-1">
+	<img src="http://www.clker.com/cliparts/B/V/P/X/Z/e/thumbtack-pushpin-2-md.png" class="thumb-tack" id="thumb-tack-2">
+	<img src="http://www.clker.com/cliparts/B/V/P/X/Z/e/thumbtack-pushpin-2-md.png" class="thumb-tack" id="thumb-tack-3">
+	<img src="http://www.clker.com/cliparts/B/V/P/X/Z/e/thumbtack-pushpin-2-md.png" class="thumb-tack" id="thumb-tack-4">
 	<div id="classroom"></div>
 
 </center>
-<table id="tracker_console" style="float:left;position:relative;z-index:300;margin-top:-700px"></table>
+<table id="tracker_console" style="float:left;position:relative;z-index:300;display:none"></table>
+<input type="hidden" name="user_id" value="1">

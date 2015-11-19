@@ -17,10 +17,12 @@ ActiveRecord::Schema.define(version: 20151118222025) do
   enable_extension "plpgsql"
 
   create_table "classrooms", force: :cascade do |t|
-    t.integer  "teacher_id",           null: false
-    t.text     "classroom_layout_csv"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "name",                null: false
+    t.integer  "teacher_id",          null: false
+    t.text     "tables_layout_csv"
+    t.text     "students_layout_csv"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
 end
