@@ -13,6 +13,15 @@
  *= require_tree .
  *= require_self
  */
+body {
+ 	color: black;
+
+}
+
+a {
+	color: black;
+
+}
 
 #save-notice {
 	background: white;

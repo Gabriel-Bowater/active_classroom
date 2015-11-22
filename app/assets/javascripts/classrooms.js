@@ -1,8 +1,81 @@
+var desk_size_small = false
+var desk_size_large = false
+
+function rotate(to_rotate){
+	console.log(to_rotate)
+	var new_height = $( to_rotate ).css("width")
+  var new_width = $( to_rotate ).css("height")
+  $( to_rotate ).css("height", new_height)
+  $( to_rotate ).css("width", new_width)
+  var classes = $( to_rotate).attr('class').split(" ")
+  if ($.inArray('horiz', classes) > -1){
+  	$(to_rotate).removeClass('horiz')
+  	$(to_rotate).addClass('vert')
+  } else {
+  	$(to_rotate).removeClass('vert')
+  	$(to_rotate).addClass('horiz')
+  }
+}
+
+function add_table(){
+	var offset = 150
+  var extra_styling = "";
+  var n = $(".tbl").length + 1;
+  var size = "md"
+  if (desk_size_small) {
+      extra_styling = ";width:150px;height:75px"
+      // offset = 75
+      size = "sm"
+  }
+  if (desk_size_large) {
+      extra_styling = ";width:450px;height:225px"
+      offset = 225
+      size = "lg"
+  }
+  var table = '<div id="table_' + n + '"class="tbl ' + size + ' horiz" style="display:absolute;float:right;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
+  table += '<img class="img_tbl" src="/images/table.png" />';
+  table += '</div>';
+
+  append_draggable(table, '.tbl', "table_" + n )
+}
+
+function add_student(){
+	var offset = 100
+  var extra_styling = "";
+  var n = $(".student").length + 1;
+  var student = '<div id="student_' + n + '"class="student" style="display:absolute;float:left;z-index:' + (n+100) + ';margin-top:-' + offset + 'px">';
+  student += '<img class="img_student" src="http://www.wpclipart.com/office/people/business_people_icons/business_person_T.png" />';
+  student += '</div>';
+  append_draggable(student, '.student', "student_" + n)
+}
+
+function append_draggable(html, obj_class, save_id) {
+  $('#classroom').append(html)
+  // tracking_info = '<tr id="positions_tracker_'+ save_id +'"><td>'+ save_id + '</td> <td>drag x:</td><td><input type="text" id="x_' + save_id + '" class="console" value="0"/></td><td>drag y:</td><td><input type="text" id="y_' + save_id + '" class="console" value="0"/></td></tr>'
+  // $('#tracker_console').append(tracking_info)
+
+  $(obj_class).draggable({
+    appendTo: '#'+save_id,
+    start: function (event, ui) {
+      isDraggingMedia = true;
+    },
+    stop: function (event, ui) {
+    	$( this).css("opacity", "1");
+    },
+    drag: function (event, ui) {
+      $("#x_" + $( this ).attr('id')).val(ui.position.left);
+      $("#y_" + $( this ).attr('id')).val(ui.position.top);
+      $( this ).css("opacity", "0.6");
+    },
+    containment: "parent"
+
+  });
+}
+
+
+
+
 $( document ).ready(function() {
-
-	var desk_size_small = false
-	var desk_size_large = false
-
 
 	$('#table_remover').click(function () {
 	  var n = $(".tbl").length;
@@ -75,9 +148,8 @@ $( document ).ready(function() {
 			}
 			tables += ($(this).attr("id") + "," + table_classes[1] + "," + orientation + "," + $(this).css("left") + "," + $(this).css("top") + "," + $(this).css("z-index") + "," )
 		})
-		//student csv format - id(CSS), id(DB), left, top 
+		//student csv format - id(CSS), id(DB), left, top, z-index 
 		$('.student').each(function(index) {
-			// students += ("Student " + index + ": left - " + $(this).css("left") + ", top- " + $(this).css("top")  + ", id value " + $(this).attr("id") + "\n")
 			students += ($(this).attr("id") + "," +  " DB_ID " + "," + $(this).css("left") + "," + $(this).css("top") + "," + $(this).css("z-index") + ",")
 		})		
 		var response_num
@@ -97,87 +169,23 @@ $( document ).ready(function() {
 	});
 
 	$('#hide_menu').click( function(){
-	  $('#menu').slideUp();
+	  $('#menu').fadeOut();
 	  $('.mini_menu_item').fadeIn();
 	});
 
 	$('#show_menu').click( function(){
 	  $( '.mini_menu_item' ).fadeOut();
-	  $('#menu').slideDown();
+	  $('#menu').fadeIn();
 	});
 
 	$('#rotate_last_desk').click( function(){
 	  var n = $(".tbl").length;
 	  var to_rotate = '#table_' + n;
-	  var new_height = $( to_rotate ).css("width")
-	  var new_width = $( to_rotate ).css("height")
-	  $( to_rotate ).css("height", new_height)
-	  $( to_rotate ).css("width", new_width)
-	  var classes = $( to_rotate).attr('class').split(" ")
-	  if ($.inArray('horiz', classes) > -1){
-	  	$(to_rotate).removeClass('horiz')
-	  	$(to_rotate).addClass('vert')
-	  } else {
-	  	$(to_rotate).removeClass('vert')
-	  	$(to_rotate).addClass('horiz')
-	  }
-
+	  rotate(to_rotate);
 	});
 
-	function add_table(){
-		var offset = 150
-	  var extra_styling = "";
-	  var n = $(".tbl").length + 1;
-	  var size = "md"
-	  if (desk_size_small) {
-	      extra_styling = ";width:150px;height:75px"
-	      // offset = 75
-	      size = "sm"
-	  }
-	  if (desk_size_large) {
-	      extra_styling = ";width:450px;height:225px"
-	      offset = 225
-	      size - "lg"
-	  }
-	  var table = '<div id="table_' + n + '"class="tbl ' + size + ' horiz" style="display:absolute;float:right;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
-	  table += '<img class="img_tbl" src="/images/table.png" />';
-	  table += '</div>';
 
-	  append_draggable(table, '.tbl', "table_" + n )
-	}
 
-	function add_student(){
-		var offset = 100
-	  var extra_styling = "";
-	  var n = $(".student").length + 1;
-	  var student = '<div id="student_' + n + '"class="student" style="display:absolute;float:left;z-index:' + (n+100) + ';margin-top:-' + offset + 'px">';
-	  student += '<img class="img_student" src="http://www.wpclipart.com/office/people/business_people_icons/business_person_T.png" />';
-	  student += '</div>';
-	  append_draggable(student, '.student', "student_" + n)
-	}
-
-	function append_draggable(html, obj_class, save_id) {
-	  $('#classroom').append(html)
-	  tracking_info = '<tr id="positions_tracker_'+ save_id +'"><td>'+ save_id + '</td> <td>drag x:</td><td><input type="text" id="x_' + save_id + '" class="console" value="0"/></td><td>drag y:</td><td><input type="text" id="y_' + save_id + '" class="console" value="0"/></td></tr>'
-	  $('#tracker_console').append(tracking_info)
-
-	  $(obj_class).draggable({
-	    appendTo: '#'+save_id,
-	    start: function (event, ui) {
-	      isDraggingMedia = true;
-	    },
-	    stop: function (event, ui) {
-	    	$( this).css("opacity", "1");
-	    },
-	    drag: function (event, ui) {
-	      $("#x_" + $( this ).attr('id')).val(ui.position.left);
-	      $("#y_" + $( this ).attr('id')).val(ui.position.top);
-	      $( this ).css("opacity", "0.6");
-	    },
-	    containment: "parent"
-
-	  });
-	}
   console.log( "ready!" );
 });
 

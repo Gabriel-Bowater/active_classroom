@@ -12,5 +12,12 @@ class ClassroomsController < ApplicationController
 	end
 
 	def show
+		if Classroom.exists?(params[:id])
+			@classroom = Classroom.find(params[:id])
+			@tables = @classroom.tables_layout_csv.split(",").each_slice(6).to_a
+			@students = @classroom.students_layout_csv.split(",").each_slice(5).to_a
+		else
+			redirect_to "/"
+		end
 	end
 end

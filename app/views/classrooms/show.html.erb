@@ -1,1 +1,20 @@
-<p>Hi bois</p>
+<center>
+	<div id="menu">
+		<h3>Class: <%= @classroom.name %></h3>
+		<p>Click on a student icon to set student details.</p>
+	  <p><a id="edit_classroom" class="menu_item">Edit Classroom</a> | <a id="new_classroom" class="menu_item">New Classroom</a> | <a id="delete_classroom" class="menu_item">Delete Classroom</a></p>
+	  <p><a id="hide_menu" class="menu_item">Hide Menu</a> </p>
+	 
+	</div>
+	<p class="mini_menu_item" style="display:none"><a id="show_menu" class="menu_item mini_menu_item" style="display:none">Show Menu</a></p><br>
+  <div class="notice" id="save-notice" style="display:none"><p id="save-notice-text"></p></div><br>
+
+  <%= render "classroom" %>
+
+</center>
+<table id="tracker_console" style="float:left;position:relative;z-index:300;display:none"></table>
+<input type="hidden" name="user_id" value="1">
+<script type="text/javascript">
+	setLayout(<%= raw @tables %>, <%= raw @students %>);
+	prepLoad();
+</script>
