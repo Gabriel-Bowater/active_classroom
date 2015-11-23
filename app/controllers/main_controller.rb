@@ -7,4 +7,11 @@ class MainController < ApplicationController
   def index
   	@content = "this is blah"
   end
+
+  def contact
+  end
+
+  def about
+  end
+  
 end

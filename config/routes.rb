@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  resources :students
   resources :users
   resources :classrooms
   get "/" => 'main#index'
   get "/about" => 'main#about'
   get "/contact" => 'main#contact'
+  get "/log-out" => 'sessions#destroy'
+  get "/delete-class/:id" => 'classrooms#destroy'
+  get "/students/info/:id" => 'students#info'
   post "/sessions" => 'sessions#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

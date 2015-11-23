@@ -25,4 +25,10 @@ class SessionsController < ApplicationController
 			session[:user_id] = nil
 		end
 	end
+
+	def destroy
+		@user = nil
+		session[:user_id] = nil
+		redirect_to '/'		
+	end
 end

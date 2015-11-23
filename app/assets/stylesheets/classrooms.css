@@ -23,7 +23,7 @@ body {
 }
 
 .student {
-	width:66px;
+	width:80px;
   height: 100px;
 }
 
@@ -50,11 +50,11 @@ body {
 
 #menu {
 	z-index: 1000;
-  background: rgba(48,224,63,0.3);
+  background: rgba(255,255,240,.9);
   padding: 20px;
   max-width: 30%;
   border-radius: 20px;
-  border: double #5522E5 7px;
+  border: double black 7px;
 }
 
 .menu_item {
@@ -81,22 +81,30 @@ body {
 
 #thumb-tack-1 {
   left:-35%;
-  z-index:1200;
+  z-index:900;
 }
 
 #thumb-tack-2 {
   left:45%;
-  z-index:1201;
+  z-index:901;
 }
 
 #thumb-tack-3 {
   left:-48%;
-  z-index:1202;
+  z-index:902;
   margin-bottom: -1270px;
 }
 
 #thumb-tack-4 {
   left:34%;
-  z-index:1203;
+  z-index:903;
   margin-bottom: -1270px;
+}
+
+.glow{
+  box-shadow: 0px 0px 30px white;
+}
+
+.selected{
+  box-shadow: 0px 0px 30px white;
 }

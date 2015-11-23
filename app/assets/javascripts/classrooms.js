@@ -44,7 +44,8 @@ function add_student(){
   var extra_styling = "";
   var n = $(".student").length + 1;
   var student = '<div id="student_' + n + '"class="student" style="display:absolute;float:left;z-index:' + (n+100) + ';margin-top:-' + offset + 'px">';
-  student += '<img class="img_student" src="http://www.wpclipart.com/office/people/business_people_icons/business_person_T.png" />';
+  student += '<img class="img_student" src="/images/person_icon.svg" />';
+  student += '<input type="hidden" id="student_' + n +'db_id" value="unset">' 
   student += '</div>';
   append_draggable(student, '.student', "student_" + n)
 }
@@ -150,7 +151,7 @@ $( document ).ready(function() {
 		})
 		//student csv format - id(CSS), id(DB), left, top, z-index 
 		$('.student').each(function(index) {
-			students += ($(this).attr("id") + "," +  " DB_ID " + "," + $(this).css("left") + "," + $(this).css("top") + "," + $(this).css("z-index") + ",")
+			students += ($(this).attr("id") + "," + $( "#" + $(this).attr("id") + "db_id").val() + "," + $(this).css("left") + "," + $(this).css("top") + "," + $(this).css("z-index") + ",")
 		})		
 		var response_num
 	  saving = $.post("/classrooms", {tables: tables, 
@@ -185,8 +186,18 @@ $( document ).ready(function() {
 	});
 
 
+	$('#delete_classroom').click(function(){
+		html_block = "<div style='display:none' id='delete_confirm'><p>Are you sure you want to delete this classroom?</p>"
+		html_block+= "<p> <a id='confirm_delete' href='/delete-class/" + $('#classroom_id').val() + "'>Yes</a> | <a id='cancel_delete' href='#'>No</a></p></div>"
+		$(this).parent().append(html_block)
+		$("#delete_confirm").slideDown();
 
-  console.log( "ready!" );
+		$('#cancel_delete').click(function(event){
+			event.preventDefault();
+			$('#delete_confirm').remove();
+		})
+	})
+  
 });
 
         //'<tr id="positions_tracker'+ save_id +'"> <td>drag x:</td><td><input type="text" id="x' + save_id + '" class="console" /></td><td>drag y:</td><td><input type="text" id="y' + save_id + '" class="console" /></td></tr>''

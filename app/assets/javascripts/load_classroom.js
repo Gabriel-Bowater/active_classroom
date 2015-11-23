@@ -44,31 +44,121 @@ function placeTables(tables){
 function placeStudents(students){
 	$.each(students, function(){
 		stud_arr = $(this)
-	  var student = '<div id="' + stud_arr[0] + '"class="student" style="display:absolute;float:left;z-index:' + stud_arr[4] + ';margin-top:-100px">';
-	  student += '<img class="img_student" src="http://www.wpclipart.com/office/people/business_people_icons/business_person_T.png" />';
+		var unset = "";
+		if (stud_arr[1] == "unset"){
+			unset = "unset"
+		}
+	  var student = '<div id="' + stud_arr[0] + '"class="student '+ unset +'" style="display:absolute;float:left;z-index:' + stud_arr[4] + ';margin-top:-100px">';
+	  student += '<img class="img_student" src="/images/person_icon.svg" />';
+	  student += '<input type="hidden" id="' + stud_arr[0] + 'db_id" value="'+ stud_arr[1] +'">';
 	  student += '</div>';
 	  append_draggable(student, '.student', stud_arr[0])
 	  $("#"+stud_arr[0]).css("left", stud_arr[2]);
 	  $("#"+stud_arr[0]).css("top", stud_arr[3]);
-	  $("#"+stud_arr[0]).draggable('disable');
+	  if($("#page_id")=="show_class"){
+	  	$("#"+stud_arr[0]).draggable('disable');
+	  }
 
 	})
 }
-	
 
+function updateStudents(){
+	var students = "";
+	$('.student').each(function(index) {
+		students += ($(this).attr("id") + "," + $( "#" + $(this).attr("id") + "db_id").val() + "," + $(this).css("left") + "," + $(this).css("top") + "," + $(this).css("z-index") + ",")
+	})		
+
+	saving = $.ajax({
+  					url: "/classrooms/"+$("#classroom_id").val(),
+  					type: "PATCH",
+  					data: {students: students}
+  					});
+  saving.done(function(result){
+  	console.log("result: "+ result)
+  })
+};
+
+function studentClick(student){
+	var $overlay = $('<div id="overlay"></div>');
+	var $div = $('<div id="overlay-window"></div>');
+	var $content = $('<p></p>');
+	$overlay.append($div);
+	$div.append($content);
+	$('body').append($overlay);
+	if(student.hasClass("unset")){
+		$div.prepend("<h3>Create new student.</h3>")
+		$content.append("<br><label>Name: </label><input type='text' id='new-stud-name'> </br>")
+		$content.append('<form><input type="radio" name="sex" value="male">Male<br><input type="radio" name="sex" value="female">Female</form>')
+		$content.append("<p><button id='save-new-student'>Save</button>  |  <button id='close-window'>Close</button></p>")
+	} else {
+		stud_id = student.children('input').val();
+		console.log(student.attr("id") + " set student")
+		student_info = $.get('/students/info/'+ stud_id)
+		student_info.done(function(result){
+			console.log(result.name)
+			$content.prepend("<p> Sex: " +  result.sex + "</p><br>")
+			$content.prepend("<p> name: " + result.name + "</p><br>")
+			$content.prepend("<h3> Student Record</h3><br>")
+		})
+		$content.append("<p><button id='close-window'>Close</button></p>")
+	}
+	console.log(student.children('input').val())
+	$overlay.show();
+	
+	$("#close-window").click(function(){
+		$overlay.remove();
+	});
+
+	$("#save-new-student").click(function(){
+		name = $('#new-stud-name').val()
+		sex = $('input[type="radio"]:checked').val()
+		teacher_id = $("#teacher_id").val()
+		if (!sex ){
+			alert("please select a sex")
+			return
+		}
+
+		if (name == ""){
+			alert("please name the student")
+			return
+		}
+
+		new_student = $.post("/students", {name: name,
+																			sex: sex,
+																			teacher_id: teacher_id})
+
+		new_student.done(function(result){
+			alert("and we're back with: "+ result)
+			student.children('input').val(result)
+			student.removeClass('unset')
+			updateStudents()
+			$overlay.remove()
+		})
+	})
+}
+	
 
 $( document ).ready(function() {
 	if (load_tables){
 
 		placeTables(tables)
 		placeStudents(students)
+
 	}
 
+	if ($("#page_id").val()=="show_class"){
+		$(".student").click(function(){
+			studentClick($(this))
+		})
+	}
 
+	$("#highlight-unset").mouseenter(function(){
+		console.log("mouseover")
+		$(".unset").addClass("glow");
+	})
 
+	$("#highlight-unset").mouseleave(function(){
+		console.log("mouseover")
+		$(".unset").removeClass("glow");
+	})
 });
-
-
-	// $.each(tables_array, function(){
-	// 	alert($(this)[0] + " x: " + $(this)[3] + " y: " + $(this)[4] )
-	// });

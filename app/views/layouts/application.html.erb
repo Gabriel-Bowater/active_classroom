@@ -14,9 +14,8 @@
 <% else %>
 	<%= render "partials/loginbar" %>
 <% end %>
-<div id="buffer" style="height:50px"></div>
+<div id="buffer" style="height:55px"></div>
 <%= render partial: "partials/flash", flash: flash %> 
 <%= yield %>
-<p>Session id = <%= session[:user_id] %>. User = <%= @user.username %></p>
 </body>
 </html>

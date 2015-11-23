@@ -1,1 +1,6 @@
 <p>index. <%= @content %></p>
+<% if @user %>
+	<p>Session id = <%= session[:user_id] %>. User = <%= @user.username %></p>
+<% end %>
+
+<input type="hidden" id="page_id" value="home">

@@ -1,0 +1,28 @@
+<center>
+	<div id="menu">
+		<h3>Editing class: <%= @classroom.name %></h3>
+		<p><a id="table_adder" class="menu_item">Add Table</a> | <a id="student_adder" class="menu_item">Add Student</a></p>
+	  <p><a id="selected_table_remover" class="menu_item">Remove selected table</a></p>
+	  <p>Desk Size:</p>
+	  <p> <a id="set_small" class="menu_item">Small</a>  <a id="set_medium" class="menu_item">Medium</a>  <a id="set_large" class="menu_item">Large</a> 
+	  </p>
+	  <p><a id="rotate_last_desk" class="menu_item">Rotate Last Desk</a></p>
+	  <p><a id="edit_classroom_save" class="menu_item">Save Changes</a> | <a class="menu_item" href="/classrooms/<%= @classroom.id %>">Discard Changes</a></p>
+	  <p><a id="hide_menu" class="menu_item">Hide Menu</a></p>
+	 
+	</div>
+	<p class="mini_menu_item" style="display:none"><a id="show_menu" class="menu_item mini_menu_item" style="display:none">Show Menu</a></p><br>
+  <div class="notice" id="save-notice" style="display:none"><p id="save-notice-text"></p></div><br>
+
+  <%= render "classroom" %>
+
+</center>
+<table id="tracker_console" style="float:left;position:relative;z-index:300;display:none"></table>
+<input type="hidden" name="user_id" value="1">
+<script type="text/javascript">
+	setLayout(<%= raw @tables %>, <%= raw @students %>);
+	prepLoad();
+</script>
+<input type="hidden" id="page_id" value="edit_class">
+<input type="hidden" id="classroom_id" value="<%= @classroom.id %>">
+<input type="hidden" id="teacher_id" value="<%= @user.id %>">
