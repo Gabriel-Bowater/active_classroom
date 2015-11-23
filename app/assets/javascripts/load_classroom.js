@@ -26,7 +26,7 @@ function placeTables(tables){
 	      extra_styling = ";width:450px;height:225px"
 	      offset = 225
 	  }
-	  var table = '<div id="' + tab_arr[0] + '"class="tbl ' + tab_arr[1] + ' ' + tab_arr[2] + '" style="display:absolute;float:right;display:none;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
+	  var table = '<div id="' + tab_arr[0] + '"class="tbl ' + tab_arr[1] + ' ' + tab_arr[2] + '" style="postion:absolute;float:right;display:none;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';
 	  table += '<img class="img_tbl" src="/images/table.png" />';
 	  table += '</div>';
 		append_draggable(table, '.tbl', tab_arr[0] )
@@ -84,7 +84,31 @@ function updateStudents(){
   })
 };
 
+function studentHtml(result){
+	console.log("comments length: " + result.comments.length)
+	var student_html = "<h3> Student Record</h3><br>"
+	student_html+="<div id='student_details'><p> name: " + result.name + "</p><br>"
+	student_html+="<p> Sex: " +  result.sex + "</p><br></div>"
+	student_html+="<div id='student_comments'><h4>Comments</h4>"
+	for (var i = 0; i < result.comments.length; i++) {
+		student_html+='<p>Title: '+result.comments[i].title+'</p>'
+		student_html+='<p>'+result.comments[i].content+'</p>'
+	};
+	student_html+="</div>"
+	student_html+="<div id='student_comment_form'>"
+	student_html+="<label>Title(optional): </label><input type='text' id='new_comment_title' name='new_comment_title'><br>"
+	student_html+="<textarea id='new_comment_text_area' name='new_comment_content'></textarea><br>"
+	student_html+='<div id="comment_dispostion"><input type="radio" name="disposition" id="angry" value="angry" /><label for="angry"><img src="https://upload.wikimedia.org/wikipedia/en/9/9c/Angry_face.png" alt="angry face" /></label>'
+	student_html+='<input type="radio" name="disposition" id="neutral" value="neutral" /><label for="neutral"><img src="http://image.spreadshirtmedia.com/image-server/v1/designs/2118190,width=178,height=178,version=1320836481/Neutral-Face.png" alt="neutral face" /></label>'
+	student_html+='<input type="radio" name="disposition" id="happy" value="happy" /><label for="happy"><img src="http://images.clipartpanda.com/smiley-face-clip-art-emotions-RidMBKdi9.jpeg" alt="happy face" /></label>'
+	student_html+='</div>'
+	student_html+="<button id='new_comment_submit'>Save</button>"
+	student_html+="</div>"
+	return student_html
+}
+
 function studentClick(student){
+	$('#overlay').remove()
 	var $overlay = $('<div id="overlay"></div>');
 	var $div = $('<div id="overlay-window"></div>');
 	var $content = $('<p></p>');
@@ -101,23 +125,31 @@ function studentClick(student){
 		console.log(student.attr("id") + " set student")
 		student_info = $.get('/students/info/'+ stud_id)
 		student_info.done(function(result){
-			console.log(result.name)
-
-			var student_html = "<h3> Student Record</h3><br>"
-			student_html+="<div id='student_details'><p> name: " + result.name + "</p><br>"
-			student_html+="<p> Sex: " +  result.sex + "</p><br></div>"
-			student_html+="<div id='student_comments'><h4>Comments</h4>"
-			student_html+="</div>"
+			student_html = studentHtml(result)
 			$content.prepend(student_html)
-			// $content.prepend("<div id='student_comments'><h4>Comments</h4>")			
-			// $content.prepend("<p> Sex: " +  result.sex + "</p><br></div>")
-			// $content.prepend("<div id='student_details'><p> name: " + result.name + "</p><br>")
-			// $content.prepend("<h3> Student Record</h3><br>")
+			$('#comment_dispostion input:radio').addClass('input_hidden');
+			$('#comment_dispostion label').click(function() {
+    		$(this).addClass('selected_disposition').siblings().removeClass('selected_disposition');
+			});
+
+			$('#new_comment_submit').click(function(){
+				post_comment = $.post('/comments',
+															{teacher_id: $("#teacher_id").val(),
+															student_id: stud_id,
+															title: $('#new_comment_title').val(),
+															content: $('#new_comment_text_area').val(),
+															disposition: $('.selected_disposition').attr('for')})
+				post_comment.done(function(result){
+					$overlay.remove();
+					alert(result)
+					studentClick(student);
+				})
+			});
+
 		})
 		$content.append("<div id='close-button'><button id='close-window'>Close</button></div>")
 	}
 	console.log(student.children('input').val())
-	$overlay.show();
 	
 	$("#close-window").click(function(){
 		$overlay.remove();
@@ -149,6 +181,8 @@ function studentClick(student){
 			$overlay.remove()
 		})
 	})
+
+	$overlay.fadeIn(700)
 }
 	
 

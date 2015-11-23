@@ -6,7 +6,14 @@ class StudentsController < ApplicationController
 
 	def info
 		student = Student.find(params[:id])
-		#comments = Comment.where(student_id: params[:id])
-		render json: {name: student.name, sex: student.sex}
+		raw_comments = Comment.where(student_id: params[:id])
+		comments = []
+		raw_comments.each do |comment|
+			comments << {title: comment.title, 
+									content: comment.content,
+									disposition: comment.disposition}
+
+		end
+		render json: {name: student.name, sex: student.sex, comments: comments}
 	end
 end

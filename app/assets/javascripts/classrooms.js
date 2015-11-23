@@ -67,6 +67,14 @@ function add_student(){
   student += '<input type="hidden" id="student_' + n +'db_id" value="unset">' 
   student += '</div>';
   append_draggable(student, '.student', "student_" + n)
+	if($("#page_id").val()=="edit_class"){
+		$(".student").click(function(){
+			console.log("mouseenter")
+			$(".popup").remove()
+			$(this).append("<div class='popup'><p>save changes to edit student details</p></div>")
+			$(".popup").delay(3000).fadeOut();
+		});
+	}
 }
 
 function append_draggable(html, obj_class, save_id) {
