@@ -7,8 +7,9 @@ function rotate(to_rotate){
   var new_width = $( to_rotate ).css("height")
   $( to_rotate ).css("height", new_height)
   $( to_rotate ).css("width", new_width)
-  var classes = $( to_rotate).attr('class').split(" ")
-  if ($.inArray('horiz', classes) > -1){
+  // var classes = $( to_rotate).attr('class').split(" ")
+  // if ($.inArray('horiz', classes) > -1){
+  if ($(to_rotate).hasClass('horiz')){
   	$(to_rotate).removeClass('horiz')
   	$(to_rotate).addClass('vert')
   } else {
@@ -20,8 +21,17 @@ function rotate(to_rotate){
 function add_table(){
 	var offset = 150
   var extra_styling = "";
-  var n = $(".tbl").length + 1;
   var size = "md"
+  var highest_index= 0;
+
+  $(".tbl").each(function(){
+  	var index = parseInt($( this ).attr("id")[6])
+  	if (index > highest_index){
+  		highest_index = index
+  	}
+  })
+
+  var n = highest_index + 1;
   if (desk_size_small) {
       extra_styling = ";width:150px;height:75px"
       // offset = 75
@@ -42,7 +52,16 @@ function add_table(){
 function add_student(){
 	var offset = 100
   var extra_styling = "";
-  var n = $(".student").length + 1;
+	var highest_index = 0;
+  $(".student").each(function(){
+  	var index = parseInt($( this ).attr("id")[8])
+  	if (index > highest_index){
+  		highest_index = index
+  	}
+  })
+
+  var n = highest_index + 1;
+
   var student = '<div id="student_' + n + '"class="student" style="display:absolute;float:left;z-index:' + (n+100) + ';margin-top:-' + offset + 'px">';
   student += '<img class="img_student" src="/images/person_icon.svg" />';
   student += '<input type="hidden" id="student_' + n +'db_id" value="unset">' 

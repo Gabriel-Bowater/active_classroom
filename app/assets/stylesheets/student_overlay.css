@@ -1,16 +1,12 @@
 #overlay {
-  background-color: rgba(0,0,0,0.93);
   width: 100%;
-  height: 100%;
+  height: 400px;
   position: fixed;
   top: 0;
   left: 0;
   display: none;
   text-align: center;
   z-index: 905;
-}
-
-#overlay div {
   margin-top: 4%;
   max-width: 45%;
   margin-left: 27.5%;
@@ -19,8 +15,28 @@
   margin-top: 150px;
   border: double black 7px;
   pading: 4px;
+  box-shadow: 6px 6px 4px #081706;
 }
 
 #overlay p {
   color: #black;
+}
+
+#close-button {
+  position: absolute;
+  bottom: 10px;
+  left: 45%;
+  width: :10%;
+}
+
+#student_details {
+  width: 30%;
+  float: left;
+  border: solid black 1px;
+}
+
+#student_comments {
+  width: 68%;
+  float: right;
+  border: solid black 1px;
 }

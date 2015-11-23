@@ -31,7 +31,11 @@ function placeTables(tables){
 	  table += '</div>';
 		append_draggable(table, '.tbl', tab_arr[0] )
 		if (tab_arr[2] == 'vert'){
-			rotate("#"+tab_arr[0])
+			tb_id = "#"+tab_arr[0]
+				var new_height = $( tb_id ).css("width")
+  			var new_width = $( tb_id ).css("height")
+  			$( tb_id ).css("height", new_height)
+  			$( tb_id ).css("width", new_width)
 		}
 		$("#"+tab_arr[0]).css("left", tab_arr[3])
 		$("#"+tab_arr[0]).css("top", tab_arr[4])
@@ -98,11 +102,19 @@ function studentClick(student){
 		student_info = $.get('/students/info/'+ stud_id)
 		student_info.done(function(result){
 			console.log(result.name)
-			$content.prepend("<p> Sex: " +  result.sex + "</p><br>")
-			$content.prepend("<p> name: " + result.name + "</p><br>")
-			$content.prepend("<h3> Student Record</h3><br>")
+
+			var student_html = "<h3> Student Record</h3><br>"
+			student_html+="<div id='student_details'><p> name: " + result.name + "</p><br>"
+			student_html+="<p> Sex: " +  result.sex + "</p><br></div>"
+			student_html+="<div id='student_comments'><h4>Comments</h4>"
+			student_html+="</div>"
+			$content.prepend(student_html)
+			// $content.prepend("<div id='student_comments'><h4>Comments</h4>")			
+			// $content.prepend("<p> Sex: " +  result.sex + "</p><br></div>")
+			// $content.prepend("<div id='student_details'><p> name: " + result.name + "</p><br>")
+			// $content.prepend("<h3> Student Record</h3><br>")
 		})
-		$content.append("<p><button id='close-window'>Close</button></p>")
+		$content.append("<div id='close-button'><button id='close-window'>Close</button></div>")
 	}
 	console.log(student.children('input').val())
 	$overlay.show();
