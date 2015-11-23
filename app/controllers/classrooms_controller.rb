@@ -42,7 +42,9 @@ class ClassroomsController < ApplicationController
 			classroom.update(students_layout_csv: params[:students])
 			render text: "Students updated"
 		elsif params[:tables] && params[:students]
-				classroom.upate(students_layout_csv: params[:students], tables_layout_csv: params[:tables])
+			puts params[:tables]
+			classroom.update(students_layout_csv: params[:students], tables_layout_csv: params[:tables])
+			render text: "Classroom updated"
 		end	
 	end
 

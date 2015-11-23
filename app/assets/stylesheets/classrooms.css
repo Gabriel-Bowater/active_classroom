@@ -15,6 +15,7 @@ body {
 .tbl {
   width:300px;
   height: 150px;
+  box-shadow: 6px 6px 4px #081706;
 }
 
 .img_tbl {
@@ -107,4 +108,14 @@ body {
 
 .selected{
   box-shadow: 0px 0px 30px white;
+}
+
+.popup{
+  width:140px;
+  height:50px;
+  background:rgba(1,1,1,.6);
+  color:white;
+  margin-top:-120px;
+  margin-left: 30px;
+  border-radius: 12px;
 }

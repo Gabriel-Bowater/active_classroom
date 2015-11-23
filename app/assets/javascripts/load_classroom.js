@@ -35,7 +35,9 @@ function placeTables(tables){
 		}
 		$("#"+tab_arr[0]).css("left", tab_arr[3])
 		$("#"+tab_arr[0]).css("top", tab_arr[4])
-		$("#"+tab_arr[0]).draggable('disable')
+	  if($("#page_id").val()=="show_class"){
+			$("#"+tab_arr[0]).draggable('disable')
+	  }
 		$("#"+tab_arr[0]).fadeIn();
 
 	});
@@ -55,7 +57,7 @@ function placeStudents(students){
 	  append_draggable(student, '.student', stud_arr[0])
 	  $("#"+stud_arr[0]).css("left", stud_arr[2]);
 	  $("#"+stud_arr[0]).css("top", stud_arr[3]);
-	  if($("#page_id")=="show_class"){
+	  if($("#page_id").val()=="show_class"){
 	  	$("#"+stud_arr[0]).draggable('disable');
 	  }
 
@@ -142,7 +144,23 @@ $( document ).ready(function() {
 	if (load_tables){
 
 		placeTables(tables)
+
+		if($("#page_id").val()=="edit_class"){
+			$(".tbl").click(function(){
+				$(".tbl").removeClass("selected")
+				$(this).addClass("selected")
+			});
+		}
+
 		placeStudents(students)
+		if($("#page_id").val()=="edit_class"){
+			$(".student").click(function(){
+				console.log("mouseenter")
+				$(".popup").remove()
+				$(this).append("<div class='popup'><p>save changes to edit student details</p></div>")
+				$(".popup").delay(3000).fadeOut();
+			});
+		}
 
 	}
 

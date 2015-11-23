@@ -8,7 +8,7 @@
 		<% @classrooms.each do |classroom| %>
 			<div class="class-desc">
 				<p class="class-title">Class <%= classroom.name %></p>
-				<p><a href="/classrooms/<%= classroom.id %>">View Class</a> | <a href="">Edit Class</a></p>
+				<p><a href="/classrooms/<%= classroom.id %>">View Class</a> | <a href="/classrooms/<%= classroom.id %>/edit">Edit Class</a></p>
 			</div>
 		<% end %>
 	</div>
