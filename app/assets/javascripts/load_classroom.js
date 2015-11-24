@@ -54,8 +54,9 @@ function placeStudents(students){
 		if (stud_arr[1] == "unset"){
 			unset = "unset"
 		}
+
 	  var student = '<div id="' + stud_arr[0] + '"class="student '+ unset +'" style="display:absolute;float:left;z-index:' + stud_arr[4] + ';margin-top:-100px">';
-	  student += '<img class="img_student" src="/images/person_icon.svg" />';
+	  student += '<img class="img_student" src="/images/unknown_student.png" />';
 	  student += '<input type="hidden" id="' + stud_arr[0] + 'db_id" value="'+ stud_arr[1] +'">';
 	  student += '</div>';
 	  append_draggable(student, '.student', stud_arr[0])
@@ -63,6 +64,17 @@ function placeStudents(students){
 	  $("#"+stud_arr[0]).css("top", stud_arr[3]);
 	  if($("#page_id").val()=="show_class"){
 	  	$("#"+stud_arr[0]).draggable('disable');
+	  }
+	  if (stud_arr[1] != "unset"){
+	  	$.get('/student/check_sex/'+stud_arr[1]+":"+stud_arr[0]).done(function(result){
+	  		console.log(result)
+	  		if (result.sex=="male"){
+	  			$("#"+result.page_id+" img").attr("src", "/images/male.png")
+	  		} else {
+	  			$("#"+result.page_id+" img").attr("src", "/images/female.png")	  			
+	  		}
+
+	  	});
 	  }
 
 	})
@@ -110,12 +122,13 @@ function studentHtml(result){
 function studentClick(student){
 	$('#overlay').remove()
 	var $overlay = $('<div id="overlay"></div>');
-	var $div = $('<div id="overlay-window"></div>');
+	var $div = $('<div id="overlay-window"><img id="loader-gif" src="/images/ajax-loader.gif"></div>');
 	var $content = $('<p></p>');
 	$overlay.append($div);
 	$div.append($content);
 	$('body').append($overlay);
 	if(student.hasClass("unset")){
+		$("#loader-gif").remove();
 		$div.prepend("<h3>Create new student.</h3>")
 		$content.append("<br><label>Name: </label><input type='text' id='new-stud-name'> </br>")
 		$content.append('<form><input type="radio" name="sex" value="male">Male<br><input type="radio" name="sex" value="female">Female</form>')
@@ -126,7 +139,8 @@ function studentClick(student){
 		student_info = $.get('/students/info/'+ stud_id)
 		student_info.done(function(result){
 			student_html = studentHtml(result)
-			$content.prepend(student_html)
+			$("#loader-gif").remove();
+			$content.prepend(student_html);
 			$('#comment_dispostion input:radio').addClass('input_hidden');
 			$('#comment_dispostion label').click(function() {
     		$(this).addClass('selected_disposition').siblings().removeClass('selected_disposition');
@@ -141,7 +155,6 @@ function studentClick(student){
 															disposition: $('.selected_disposition').attr('for')})
 				post_comment.done(function(result){
 					$overlay.remove();
-					alert(result)
 					studentClick(student);
 				})
 			});
@@ -177,6 +190,11 @@ function studentClick(student){
 			alert("and we're back with: "+ result)
 			student.children('input').val(result)
 			student.removeClass('unset')
+			if (sex == "male"){
+				student.children('img').attr('src', '/images/male.png')
+			} else{
+				student.children('img').attr('src', '/images/female.png')
+			}
 			updateStudents()
 			$overlay.remove()
 		})

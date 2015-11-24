@@ -63,7 +63,7 @@ function add_student(){
   var n = highest_index + 1;
 
   var student = '<div id="student_' + n + '"class="student" style="display:absolute;float:left;z-index:' + (n+100) + ';margin-top:-' + offset + 'px">';
-  student += '<img class="img_student" src="/images/person_icon.svg" />';
+  student += '<img class="img_student" src="/images/unknown_student.png" />';
   student += '<input type="hidden" id="student_' + n +'db_id" value="unset">' 
   student += '</div>';
   append_draggable(student, '.student', "student_" + n)

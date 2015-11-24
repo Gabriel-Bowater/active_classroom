@@ -35,6 +35,10 @@
   border: solid black 1px;
 }
 
+#loader-gif{
+  margin-top: 43%
+}
+
 #student_comments {
   width: 68%;
   float: right;

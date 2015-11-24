@@ -16,4 +16,10 @@ class StudentsController < ApplicationController
 		end
 		render json: {name: student.name, sex: student.sex, comments: comments}
 	end
+
+	def check_sex
+		id = params[:id].split(":")[0].to_i
+		student = Student.find(id)
+		render json: {sex: student.sex, page_id: params[:id].split(":")[1]}
+	end
 end
