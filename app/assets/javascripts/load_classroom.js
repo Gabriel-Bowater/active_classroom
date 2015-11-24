@@ -91,16 +91,16 @@ function studentHtml(result){
 	student_html+="<p> Sex: " +  result.sex + "</p><br></div>"
 	student_html+="<div id='student_comments'><h4>Comments</h4>"
 	for (var i = 0; i < result.comments.length; i++) {
-		student_html+='<p>Title: '+result.comments[i].title+'</p>'
-		student_html+='<p>'+result.comments[i].content+'</p>'
+		student_html+='<p style="font-weight:bold;margin-bottom:-7px">Title: '+result.comments[i].title+'<img id="mini-disposition"src="/images/'+result.comments[i].disposition+'.png"></p>'
+		student_html+='<p id="comment-content">'+result.comments[i].content+'</p>'
 	};
 	student_html+="</div>"
 	student_html+="<div id='student_comment_form'>"
 	student_html+="<label>Title(optional): </label><input type='text' id='new_comment_title' name='new_comment_title'><br>"
 	student_html+="<textarea id='new_comment_text_area' name='new_comment_content'></textarea><br>"
-	student_html+='<div id="comment_dispostion"><input type="radio" name="disposition" id="angry" value="angry" /><label for="angry"><img src="https://upload.wikimedia.org/wikipedia/en/9/9c/Angry_face.png" alt="angry face" /></label>'
-	student_html+='<input type="radio" name="disposition" id="neutral" value="neutral" /><label for="neutral"><img src="http://image.spreadshirtmedia.com/image-server/v1/designs/2118190,width=178,height=178,version=1320836481/Neutral-Face.png" alt="neutral face" /></label>'
-	student_html+='<input type="radio" name="disposition" id="happy" value="happy" /><label for="happy"><img src="http://images.clipartpanda.com/smiley-face-clip-art-emotions-RidMBKdi9.jpeg" alt="happy face" /></label>'
+	student_html+='<div id="comment_dispostion"><input type="radio" name="disposition" id="angry" value="angry" /><label for="angry"><img src="/images/angry.png" alt="angry face" /></label>'
+	student_html+='<input type="radio" name="disposition" id="neutral" value="neutral" /><label for="neutral"><img src="/images/neutral.png" alt="neutral face" /></label>'
+	student_html+='<input type="radio" name="disposition" id="happy" value="happy" /><label for="happy"><img src="/images/happy.png" alt="happy face" /></label>'
 	student_html+='</div>'
 	student_html+="<button id='new_comment_submit'>Save</button>"
 	student_html+="</div>"

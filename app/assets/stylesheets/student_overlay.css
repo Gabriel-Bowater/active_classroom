@@ -41,6 +41,15 @@
   border: solid black 1px;
   overflow:scroll;
   height: 160px;
+  text-align: left
+}
+
+#comment_content {
+  
+}
+
+#mini-disposition{
+  width:15px;
 }
 
 #student_comment_form{
