@@ -187,7 +187,7 @@ function studentClick(student){
 																			teacher_id: teacher_id})
 
 		new_student.done(function(result){
-			alert("and we're back with: "+ result)
+
 			student.children('input').val(result)
 			student.removeClass('unset')
 			if (sex == "male"){

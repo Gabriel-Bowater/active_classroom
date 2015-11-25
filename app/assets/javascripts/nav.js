@@ -57,7 +57,6 @@ function createAccount(){
 function logIn(){
 	user_id = $("#user_id").val();
 	password = $("#password").val();
-	alert(user_id+ " "+ password)
 
 	login = $.post("/sessions",{id: user_id, 
 															password: password},
