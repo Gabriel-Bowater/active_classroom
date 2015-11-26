@@ -7,8 +7,7 @@ function setLayout(tables_array, students_array){
 	students = students_array;
 }
 
-function prepLoad()
-{
+function prepLoad(){
 	load_tables = true;
 }
 
@@ -91,118 +90,11 @@ function updateStudents(){
   					type: "PATCH",
   					data: {students: students}
   					});
+	
   saving.done(function(result){
   	console.log("result: "+ result)
   })
 };
-
-function studentHtml(result){
-	console.log("comments length: " + result.comments.length)
-	var student_html = "<h3> Student Record</h3><br>"
-	student_html+="<div id='student_details'><p> name: " + result.name + "</p><br>"
-	student_html+="<p> Sex: " +  result.sex + "</p><br></div>"
-	student_html+="<div id='student_comments'><h4>Comments</h4>"
-	for (var i = 0; i < result.comments.length; i++) {
-		student_html+='<p style="font-weight:bold;margin-bottom:-7px">Title: '+result.comments[i].title+'<img id="mini-disposition"src="/images/'+result.comments[i].disposition+'.png"></p>'
-		student_html+='<p id="comment-content">'+result.comments[i].content+'</p>'
-	};
-	student_html+="</div>"
-	student_html+="<div id='student_comment_form'>"
-	student_html+="<label>Title(optional): </label><input type='text' id='new_comment_title' name='new_comment_title'><br>"
-	student_html+="<textarea id='new_comment_text_area' name='new_comment_content'></textarea><br>"
-	student_html+='<div id="comment_dispostion"><input type="radio" name="disposition" id="angry" value="angry" /><label for="angry"><img src="/images/angry.png" alt="angry face" /></label>'
-	student_html+='<input type="radio" name="disposition" id="neutral" value="neutral" /><label for="neutral"><img src="/images/neutral.png" alt="neutral face" /></label>'
-	student_html+='<input type="radio" name="disposition" id="happy" value="happy" /><label for="happy"><img src="/images/happy.png" alt="happy face" /></label>'
-	student_html+='</div>'
-	student_html+="<button id='new_comment_submit'>Save</button>"
-	student_html+="</div>"
-	return student_html
-}
-
-function studentClick(student){
-	$('#overlay').remove()
-	var $overlay = $('<div id="overlay"></div>');
-	var $div = $('<div id="overlay-window"><img id="loader-gif" src="/images/ajax-loader.gif"></div>');
-	var $content = $('<p></p>');
-	$overlay.append($div);
-	$div.append($content);
-	$('body').append($overlay);
-	if(student.hasClass("unset")){
-		$("#loader-gif").remove();
-		$div.prepend("<h3>Create new student.</h3>")
-		$content.append("<br><label>Name: </label><input type='text' id='new-stud-name'> </br>")
-		$content.append('<form><input type="radio" name="sex" value="male">Male<br><input type="radio" name="sex" value="female">Female</form>')
-		$content.append("<p><button id='save-new-student'>Save</button>  |  <button id='close-window'>Close</button></p>")
-	} else {
-		stud_id = student.children('input').val();
-		console.log(student.attr("id") + " set student")
-		student_info = $.get('/students/info/'+ stud_id)
-		student_info.done(function(result){
-			student_html = studentHtml(result)
-			$("#loader-gif").remove();
-			$content.prepend(student_html);
-			$('#comment_dispostion input:radio').addClass('input_hidden');
-			$('#comment_dispostion label').click(function() {
-    		$(this).addClass('selected_disposition').siblings().removeClass('selected_disposition');
-			});
-
-			$('#new_comment_submit').click(function(){
-				post_comment = $.post('/comments',
-															{teacher_id: $("#teacher_id").val(),
-															student_id: stud_id,
-															title: $('#new_comment_title').val(),
-															content: $('#new_comment_text_area').val(),
-															disposition: $('.selected_disposition').attr('for')})
-				post_comment.done(function(result){
-					$overlay.remove();
-					studentClick(student);
-				})
-			});
-
-		})
-		$content.append("<div id='close-button'><button id='close-window'>Close</button></div>")
-	}
-	console.log(student.children('input').val())
-	
-	$("#close-window").click(function(){
-		$overlay.remove();
-	});
-
-	$("#save-new-student").click(function(){
-		name = $('#new-stud-name').val()
-		sex = $('input[type="radio"]:checked').val()
-		teacher_id = $("#teacher_id").val()
-		if (!sex ){
-			alert("please select a sex")
-			return
-		}
-
-		if (name == ""){
-			alert("please name the student")
-			return
-		}
-
-		new_student = $.post("/students", {name: name,
-																			sex: sex,
-																			teacher_id: teacher_id})
-
-		new_student.done(function(result){
-
-			student.children('input').val(result)
-			student.removeClass('unset')
-			if (sex == "male"){
-				student.children('img').attr('src', '/images/male.png')
-			} else{
-				student.children('img').attr('src', '/images/female.png')
-			}
-			updateStudents()
-			$overlay.remove()
-		})
-	})
-
-	$overlay.fadeIn(700)
-}
-	
 
 $( document ).ready(function() {
 	if (load_tables){

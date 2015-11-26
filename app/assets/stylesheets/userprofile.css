@@ -1,0 +1,58 @@
+#profile-div {
+	background: rgba(255,255,240,1);
+	max-width: 940px;
+	margin: 7%;
+	padding: 10px;
+	color: rgb(30,30,30);
+	overflow: auto;
+}
+
+.class-desc {
+	text-align: left;
+	padding-left: 20%;
+}
+
+.class-title {
+	font-weight: bold;
+	font-size: 1.2em
+}
+
+#classrooms-list{
+	width:50%;
+	float:left;
+	border: solid orange 2px;
+}
+#teacher-tags{
+	width: 50%;
+	float: left;
+}
+
+#tag-comments{
+	width: 50%;
+	float: left;
+}
+
+#break {
+	height: 3px;
+	width: 80%;
+	background: black;
+}
+
+#teacher-students{
+	width:100%;
+	float: left;
+}
+
+.profile-student-icon {
+	width:15%;
+	display: inline-block;
+	text-align: center
+}
+
+.profile-student-icon-img{
+	width:100%;
+}
+
+.single-tag {
+	display: none;
+}

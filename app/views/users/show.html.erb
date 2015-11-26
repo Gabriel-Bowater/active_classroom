@@ -3,15 +3,50 @@
 		<h1>User profile</h1>
 		<p>Username: <%= @user.username %></p>
 		<p>Email: <%= @user.email %></p>
-		<div style="height:3px;width:80%;background:black"></div>
-		<h2>User Classrooms</h2>
-		<% @classrooms.each do |classroom| %>
-			<div class="class-desc">
-				<p class="class-title">Class <%= classroom.name %></p>
-				<p><a href="/classrooms/<%= classroom.id %>">View Class</a> | <a href="/classrooms/<%= classroom.id %>/edit">Edit Class</a></p>
-			</div>
-		<% end %>
+		<p>DB_ID: <%= @user.id %></p>
+		<div id="break"></div>
+		<div id="classrooms-list">
+			<h2>User Classrooms</h2>
+			<% @classrooms.each do |classroom| %>
+				<div class="class-desc">
+					<p class="class-title">Class <%= classroom.name %></p>
+					<p><a href="/classrooms/<%= classroom.id %>">View Class</a> | <a href="/classrooms/<%= classroom.id %>/edit">Edit Class</a></p>
+				</div>
+			<% end %>
+		</div>
+
+		<div id="teacher-tags">
+			<h2>User Tags</h2>
+			<p style="font-size:0.8em">Tags can be used to associate a comment with an assignment, a subject, or anything else of the users choosing. Comments can have multiple tags. Click on a tag to see all comments with that tag.</p>
+			
+			<div id="tags-div"><p></p></div>
+
+			<button id="add_tag">Add a tag</button>
+		</div>
+
+		<div id="teacher-students">
+			<h2>Students</h2>
+				<p style="font-size:0.8em">Click on a student to view / edit their details</p>
+				<% @students.each do |student| %>
+					<div class="profile-student-icon" id="stud_<%= student.id -%>">
+					<% #TODO - add logic to display personalized picture if existant %>
+					<a href="/students/<%= student.id %>">
+					<% if student.sex == "male" %>
+						<img class="profile-student-icon-img" src="/images/male.png">
+					<% else %>
+						<img class="profile-student-icon-img" src="/images/female.png">		
+					<% end %>
+					<p><%= student.name %></p>
+					</a>
+					</div>
+				<% end %>
+		</div>
 	</div>
 </center>
 
 <input type="hidden" id="page_id" value="profile">
+<input type="hidden" id="user_id" value="<%= @user.id %>">
+<script type="text/javascript">
+	setTags(<%= raw @tags %>);
+	setComments(<%= raw @json_comments %>);
+</script>

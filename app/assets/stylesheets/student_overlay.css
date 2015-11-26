@@ -13,7 +13,7 @@
   border-radius: 4px;
   background-color: rgba(255,255,240,.9);
   border: double black 7px;
-  pading: 4px;
+  padding: 4px;
   box-shadow: 6px 6px 4px #081706;
   display: none
 }
@@ -52,21 +52,45 @@
   
 }
 
-#mini-disposition{
+.mini-disposition{
   width:15px;
 }
 
 #student_comment_form{
-  width: 100%;
+  width: 98%;
   display: block;
   border: solid black 1px;
   position: absolute;
-  bottom:50px;
+  bottom:45px;
+  padding: 3px
 }
 
 #new_comment_text_area{
   width:80%;
   resize: none;
+}
+
+#tags-dropdown{
+  display:inline-block;
+  list-style-type: none;
+  float: left;
+}
+
+.remove-tag{
+  height:20px;
+  width: 20px
+}
+
+.applied-tag{
+  display:inline;
+  background: rgb(230,230,200);
+  border-radius: 4px;
+  padding: 2px;
+  margin: 3px;
+}
+
+.dropdown-menu{
+  overflow: scroll
 }
 
 /*
@@ -94,6 +118,9 @@ label img {
 }
 
 #comment_dispostion label img {
-    padding: 3px;
+  padding: 3px;
+  margin-top: -5px;
+  margin-bottom: -5px
+
     
 }

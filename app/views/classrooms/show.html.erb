@@ -17,6 +17,7 @@
 <script type="text/javascript">
 	setLayout(<%= raw @tables %>, <%= raw @students %>);
 	prepLoad();
+	setTags(<%= raw @tags %>);
 </script>
 <input type="hidden" id="page_id" value="show_class">
 <input type="hidden" id="classroom_id" value="<%= @classroom.id %>">

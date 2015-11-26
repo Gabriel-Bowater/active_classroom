@@ -19,6 +19,7 @@ class ClassroomsController < ApplicationController
 		else
 			redirect_to "/"
 		end
+		@tags = User.find(@user.id).tags_csv.split(",")
 	end
 
 	def destroy

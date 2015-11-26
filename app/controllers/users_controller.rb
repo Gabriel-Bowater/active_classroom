@@ -19,9 +19,38 @@ class UsersController < ApplicationController
 		if !@user
 			redirect_to "/"
 		end
-
+		if @user.tags_csv
+			@tags = @user.tags_csv.split(",")
+		else
+			@tags = []
+		end
 		@classrooms = Classroom.where(teacher_id: @user.id)
-		@students = [] #TODO grab teacher's students
+		@students = Student.where(teacher_id: @user.id)
+		@comments = Comment.where(teacher_id: @user.id)
+		@json_comments = @comments.to_json
+
+	end
+
+	def update
+		#add a tag
+		if params[:tag] && @user && params[:id].to_i == @user.id
+			
+			if User.find(@user.id).tags_csv
+				tags = User.find(@user.id).tags_csv.split(",")
+			else
+				tags = []
+			end
+
+			if tags.include?(params[:tag])
+				render text: "tag already exists"
+			else
+				tags << params[:tag]
+				User.find(@user.id).update(tags_csv: tags.join(","))
+				render json: {tags: tags}
+			end
+		else
+			render text: params
+		end
 
 	end
 
