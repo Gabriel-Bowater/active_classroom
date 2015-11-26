@@ -148,6 +148,11 @@ function tagsDropdown(user_tags){
 	for (var i = 0; i < user_tags.length; i++) {
 		html_chunk += '<li><a id="tag_'+user_tags[i]+'" class="dropdown-tag" href="#">'+user_tags[i]+'</a></li>'
 	};
+
+	if (user_tags.length==0){
+		html_chunk += '<li><a id="tag_absent" class="dropdown-tag" href="#">Add tags on your profile page.</a></li>'
+	}
+
 	html_chunk+=' </ul> </li> </ul>'
 	return html_chunk
 }
