@@ -22,4 +22,17 @@ class StudentsController < ApplicationController
 		student = Student.find(id)
 		render json: {sex: student.sex, page_id: params[:id].split(":")[1]}
 	end
+
+	def fetch
+		students = Student.where(teacher_id: @user.id)
+		return_array = []
+		students.each do |std|
+			sex = "m"
+			if std.sex == "female"
+				sex = "f"
+			end
+			return_array.push([std.id, std.name, sex])
+		end
+		render json: {array: return_array}
+	end
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/students/info/:id" => 'students#info'
   get "/student/check_sex/:id" => 'students#check_sex'
   post "/sessions" => 'sessions#create'
+  get "/students/existing_stds/:id" => 'students#fetch'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -70,6 +70,7 @@
   resize: none;
 }
 
+#student-dropdown,
 #tags-dropdown{
   display:inline-block;
   list-style-type: none;
