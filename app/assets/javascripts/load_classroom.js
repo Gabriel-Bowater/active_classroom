@@ -19,10 +19,10 @@ function placeTables(tables){
 	  var n = $(".tbl").length + 1;
 	  var size = "md"
 	  if (tab_arr[1]=="sm") {
-	      extra_styling = ";width:150px;height:75px"
+	      extra_styling = ";width:100px;height:50px"
 	  }
 	  if (tab_arr[1]=="lg") {
-	      extra_styling = ";width:450px;height:225px"
+	      extra_styling = ";width:350px;height:175px"
 	      offset = 225
 	  }
 	  var table = '<div id="' + tab_arr[0] + '"class="tbl ' + tab_arr[1] + ' ' + tab_arr[2] + '" style="postion:absolute;float:right;display:none;z-index:' + n + ';margin-top:-' + offset + 'px' + extra_styling + '">';

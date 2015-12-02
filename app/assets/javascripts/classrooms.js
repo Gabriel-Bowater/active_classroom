@@ -33,12 +33,12 @@ function add_table(){
 
   var n = highest_index + 1;
   if (desk_size_small) {
-      extra_styling = ";width:150px;height:75px"
+      extra_styling = ";width:100px;height:50px"
       // offset = 75
       size = "sm"
   }
   if (desk_size_large) {
-      extra_styling = ";width:450px;height:225px"
+      extra_styling = ";width:350px;height:175px"
       offset = 225
       size = "lg"
   }

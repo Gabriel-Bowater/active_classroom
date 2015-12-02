@@ -12,8 +12,8 @@ body {
 }
 
 .tbl {
-  width:300px;
-  height: 150px;
+  width:200px;
+  height: 100px;
   box-shadow: 6px 6px 4px #081706;
 }
 
@@ -23,8 +23,8 @@ body {
 }
 
 .student {
-	width:80px;
-  height: 100px;
+	width:60px;
+  height: 80px;
 }
 
 .img_student {
@@ -43,6 +43,7 @@ body {
   background-image: url('http://1.bp.blogspot.com/-gFxl7iFbhN0/U0beLdwg9oI/AAAAAAAAPDY/BBNB0uLKWW4/s1600/seamless-textures-PARQUET-WOOD-FLOORING-%2329b.jpg');
   background-size: 250px;
   box-shadow: 6px 6px 4px #081706;
+  position: relative
 }
 
 #menu {
@@ -70,32 +71,32 @@ body {
 }
 
 .thumb-tack {
-  position:relative;
+  position:absolute;
   text-align: left;
   width:80px;
 }
 
 #thumb-tack-1 {
-  left:-150px;
+  left:-0px;
   top: 0;
   z-index:900;
 }
 
 #thumb-tack-2 {
-  left:680px;
+  left:900px;
   top: 0;
   z-index:901;
 }
 
 #thumb-tack-3 {
-  left:-320px;
+  left:0px;
   top: 600px;
   z-index:902;
   /*margin-bottom: -1270px;*/
 }
 
 #thumb-tack-4 {
-  left:510px;
+  left:900px;
   top: 600px;
   z-index:903;
   /*margin-bottom: -1270px;*/
