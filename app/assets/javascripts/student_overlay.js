@@ -209,7 +209,11 @@ function studentHtml(result){
 	student_html+="<p> Sex: " +  result.sex + "</p><br></div>"
 	student_html+="<div id='student_comments'><h4>Comments</h4>"
 	for (var i = 0; i < result.comments.length; i++) {
-		student_html+='<p style="font-weight:bold;margin-bottom:-7px">Title: '+result.comments[i].title+'<img class="mini-disposition"src="/images/'+result.comments[i].disposition+'.png"></p>'
+		student_html+='<p style="font-weight:bold;margin-bottom:-7px">Title: '+result.comments[i].title 
+		if (result.comments[i].disposition) {
+		student_html+='<img class="mini-disposition"src="/images/'+result.comments[i].disposition+'.png">'
+		}
+		student_html+='</p>'
 		student_html+='<p id="comment-content">'+result.comments[i].content+'</p>'
 	};
 	student_html+="</div>"

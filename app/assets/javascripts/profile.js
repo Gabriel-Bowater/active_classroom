@@ -101,8 +101,11 @@ function findTagComments(tag){
 		var title = tag_comments[i].title
 		var content = tag_comments[i].content
 		var disposition = tag_comments[i].disposition
-		tag_comments_html += "<p>comment for "+student_name+". Title:<u>" + title + "</u><img class='mini-disposition' src='/images/"+disposition+".png'></p>"
-		tag_comments_html += "<p>"+content+"</p><br>"
+		tag_comments_html += "<p>comment for "+student_name+". Title:<u>" + title + "</u>" 
+		if (disposition){
+			tag_comments_html +="<img class='mini-disposition' src='/images/"+disposition+".png'>"
+		}
+		tag_comments_html += "</p><p>"+content+"</p><br>"
 	}
 	tag_comments_html += "<button id='tags-back'>Go Back</button>"
 	tag_comments_html += "</div>"

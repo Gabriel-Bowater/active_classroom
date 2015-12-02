@@ -24,7 +24,7 @@ class StudentsController < ApplicationController
 	end
 
 	def fetch
-		students = Student.where(teacher_id: @user.id)
+		students = Student.where(teacher_id: @user.id).order("name")
 		return_array = []
 		students.each do |std|
 			sex = "m"
