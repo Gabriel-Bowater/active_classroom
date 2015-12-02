@@ -1,3 +1,4 @@
+#student-profile-div,
 #profile-div {
 	background: rgba(255,255,240,1);
 	max-width: 940px;
@@ -55,4 +56,24 @@
 
 .single-tag {
 	display: none;
+}
+
+#student_profile_comments {
+	width: 70%;
+	float: left;
+	border: black solid 1px;
+	display: inline-block;
+	text-align: left;
+	padding-left: 5%
+}
+
+#student_profile_comments_filters {
+	width: 30%;
+	float: left;
+	border: black solid 1px;
+	display: inline-block;
+}
+
+#student_profile_comments_title {
+	margin-left: -3%
 }

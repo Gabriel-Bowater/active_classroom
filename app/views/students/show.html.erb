@@ -1,0 +1,21 @@
+<center>
+	<div id="student-profile-div">
+		<h3>Student: <%= @student.name %></h3>
+		<div id="student_profile_comments">
+			<h4 id="student_profile_comments_title">All comments for <%= @student.name %></h4>
+			<% @comments.each do |comment| %>
+				<p><u><%= comment.title %></u>
+				<% if comment.disposition %>
+					<img class='mini-disposition' src='/images/<%= comment.disposition %>.png'>
+				<% end %>
+				</p>
+				<p><%= comment.content %></p>
+			<% end %>
+		</div>
+		<div id="student_profile_comments_filters">
+			<h4>Filter comments.</h4>
+			
+		</div>
+
+	</div>
+</center>

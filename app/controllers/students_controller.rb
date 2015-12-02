@@ -4,6 +4,18 @@ class StudentsController < ApplicationController
 		render text: student.id
 	end
 
+	def show
+
+		if !Student.exists?(params[:id])
+			redirect_to '/'
+		else
+			@student = Student.find(params[:id])
+			@comments = Comment.where(student_id: @student.id).order("created_at").reverse
+			@comments_json = @comments.to_json
+		end
+		# render json: @student
+	end
+
 	def info
 		student = Student.find(params[:id])
 		raw_comments = Comment.where(student_id: params[:id])
