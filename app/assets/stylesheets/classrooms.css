@@ -1,6 +1,9 @@
 body {
-	background-image: url('http://www.sharecg.com/images/medium/27733.jpg');
-	background-size: 380px;
+	background-image: url('/images/green-board-texture.jpg');
+	background-size: 200px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
 #img_del {
@@ -92,14 +95,14 @@ body {
   left:0px;
   top: 600px;
   z-index:902;
-  /*margin-bottom: -1270px;*/
+
 }
 
 #thumb-tack-4 {
   left:900px;
   top: 600px;
   z-index:903;
-  /*margin-bottom: -1270px;*/
+
 }
 
 .glow{
@@ -118,4 +121,13 @@ body {
   margin-top:-120px;
   margin-left: 30px;
   border-radius: 12px;
+}
+
+.student-name {
+  display:none;
+  color: white;
+  background:rgba(1,1,1,.6);
+  border-radius: 8px;
+  padding: 3px;
+  font-size: 0.7em;
 }

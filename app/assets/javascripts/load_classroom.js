@@ -72,7 +72,7 @@ function placeStudents(students){
 	  		} else {
 	  			$("#"+result.page_id+" img").attr("src", "/images/female.png")	  			
 	  		}
-
+	  		$("#"+result.page_id).append("<p class='student-name'>"+result.name+"</p>")
 	  	});
 	  }
 
@@ -126,13 +126,17 @@ $( document ).ready(function() {
 		})
 	}
 
-	$("#highlight-unset").mouseenter(function(){
-		console.log("mouseover")
-		$(".unset").addClass("glow");
+	$("#toggle-names").click(function(){
+		$(".student-name").slideToggle();
 	})
 
-	$("#highlight-unset").mouseleave(function(){
-		console.log("mouseover")
-		$(".unset").removeClass("glow");
-	})
+	// $("#highlight-unset").mouseenter(function(){
+	// 	console.log("mouseover")
+	// 	$(".unset").addClass("glow");
+	// })
+
+	// $("#highlight-unset").mouseleave(function(){
+	// 	console.log("mouseover")
+	// 	$(".unset").removeClass("glow");
+	// })
 });

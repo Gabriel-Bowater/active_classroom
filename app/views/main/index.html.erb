@@ -1,6 +1,44 @@
-<p>index. <%= @content %></p>
-<% if @user %>
-	<p>Session id = <%= session[:user_id] %>. User = <%= @user.username %></p>
-<% end %>
+<img src="/images/classroom-stock.jpg" class="index-head-image">
 
+<center>
+	<div class="index-divider"></div>
+	<div class="wrapper">
+		<div class="left-col">
+			<h3 class="left-col-blub">Active Classroom. The smoothest classroom seating management and record keeping experience yet.</h3>
+		</div>
+		<div class="right-col">
+			<p class="right-col-blurb">Active Classroom has been designed by teachers to provide a simple yet powerful tool for managing students, subjects and classrooms. In minutes a teacher can create a way of tracking students across multiple subjects and classes, which can then be accessed from anywhere.</p>
+		</div>
+	</div>
+
+	<div class="index-divider"></div>
+	<img src="/images/classroom-chairs.jpg" class="index-head-image">
+	<div class="index-divider"></div>
+
+	<div class="wrapper">
+		<div class="left-col">
+			<h3 class="left-col-blub">Create and edit classroom layouts using our intuitive drag and drop interface.</h3>
+		</div>
+		<div class="right-col">
+			<p class="right-col-blurb">Setting up a classroom is a breeze with Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+		</div>
+	</div>
+
+	<div class="index-divider"></div>
+	<img src="/images/grading-stock.png" class="index-head-image">
+	<div class="index-divider"></div>
+
+	<div class="wrapper">
+		<div class="left-col">
+			<h3 class="left-col-blub">Access and filter student notes instantly.</h3>
+		</div>
+		<div class="right-col">
+			<p class="right-col-blurb">With our tagging system writing reports gets a lot easier. Grab notes on any student in seconds, filtering them by any tag you choose, or by disposition. Create Action-Required notes for special circumstances. Sign up now in the navbar at the top of the screen!</p>
+		</div>
+	</div>
+
+
+</center>
+
+<%= render "footer" %>
 <input type="hidden" id="page_id" value="home">

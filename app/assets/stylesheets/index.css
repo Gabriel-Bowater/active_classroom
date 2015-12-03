@@ -1,0 +1,40 @@
+.index-head-image {
+	width: 100%;
+	margin-top: -10px;
+}
+
+.index-divider {
+	width: 100%;
+	height:20px;
+	background-color: rgb(75, 20, 173);
+}
+.wrapper {
+	width: 100%;
+	height: 420px;
+}
+
+.left-col,
+.right-col {
+	width: 50%;
+	float: left;
+	background: white;
+	height: 420px;
+	padding: 80px;
+	padding-left: 180px
+}
+
+.right-col-blurb{
+	margin-top: 30px;
+	font-size: 1.2em
+}
+
+footer {
+	padding-top: 30px;
+	width: 100%;
+	height:100px;
+	background-color: rgb(75, 20, 173);
+	color: white
+}
+footer a{
+	color: white
+}

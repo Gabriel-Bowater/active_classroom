@@ -21,16 +21,23 @@
 #classrooms-list{
 	width:50%;
 	float:left;
-	border: solid orange 2px;
+	overflow: auto;
+	max-height: 380px;
+
 }
 #teacher-tags{
 	width: 50%;
 	float: left;
+	overflow: auto;
+	height: 380px;
 }
 
 #tag-comments{
 	width: 50%;
 	float: left;
+	overflow: auto;
+	max-height: 380px;
+
 }
 
 #break {
@@ -67,7 +74,7 @@
 	padding-left: 5%;
 	min-height: 300px;
 	max-height: 450px;
-	overflow: scroll;
+	overflow: auto;
 }
 
 #student_profile_comments_filters {

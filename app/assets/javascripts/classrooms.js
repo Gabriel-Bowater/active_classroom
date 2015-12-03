@@ -214,7 +214,7 @@ $( document ).ready(function() {
 
 
 	$('#delete_classroom').click(function(){
-		html_block = "<div style='display:none' id='delete_confirm'><p>Are you sure you want to delete this classroom?</p>"
+		html_block = "<div style='display:none' id='delete_confirm'><p style='font-size: 0.7em'>Are you sure you want to delete this classroom? It will not be recoverable. Students will not be deleted and can be added to other classes. To delete a student, go to their profile page.</p>"
 		html_block+= "<p> <a id='confirm_delete' href='/delete-class/" + $('#classroom_id').val() + "'>Yes</a> | <a id='cancel_delete' href='#'>No</a></p></div>"
 		$(this).parent().append(html_block)
 		$("#delete_confirm").slideDown();

@@ -65,6 +65,8 @@ function studentClick(student){
 				student.children('img').attr('src', '/images/female.png')
 			}
 			updateStudents()
+			$(student).append("<p class='student-name'>"+name+"</p>")
+			$(".student-name").slideUp();
 			$overlay.remove()
 		})
 	})

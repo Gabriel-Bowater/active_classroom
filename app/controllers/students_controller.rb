@@ -50,7 +50,7 @@ class StudentsController < ApplicationController
 	def check_sex
 		id = params[:id].split(":")[0].to_i
 		student = Student.find(id)
-		render json: {sex: student.sex, page_id: params[:id].split(":")[1]}
+		render json: {sex: student.sex, page_id: params[:id].split(":")[1], name: student.name}
 	end
 
 	def fetch
