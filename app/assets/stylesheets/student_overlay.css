@@ -29,6 +29,14 @@
   width: 10%;
 }
 
+.student_profile_link{
+  width: 80px;
+  float: left;
+  font-size: 0.8em;
+  margin-top: 18px;
+  margin-left: 42px
+}
+
 #student_details {
   width: 30%;
   float: left;

@@ -6,14 +6,32 @@ class StudentsController < ApplicationController
 
 	def show
 
-		if !Student.exists?(params[:id])
+		if !Student.exists?(params[:id]) 
+			flash[:notice] = "No such student"
+			redirect_to '/'
+		elsif Student.find(params[:id]).teacher_id != @user.id
+			flash[:notice] = "Access denied."
 			redirect_to '/'
 		else
 			@student = Student.find(params[:id])
 			@comments = Comment.where(student_id: @student.id).order("created_at").reverse
-			@comments_json = @comments.to_json
+			@json_comments = @comments.to_json
+			@student_classrooms = Array.new
+			classrooms = Classroom.where(teacher_id: @user.id)
+			classrooms.each do |cr|
+				cr.students_layout_csv.split(",").each_slice(5).to_a.each do |student|
+					if student[1].to_i == @student.id
+						@student_classrooms << {name: cr.name, id: cr.id}
+					end
+				end
+			end
+			if @user.tags_csv
+				@tags = @user.tags_csv.split(",")
+			else
+				@tags = []
+			end
 		end
-		# render json: @student
+
 	end
 
 	def info
@@ -26,7 +44,7 @@ class StudentsController < ApplicationController
 									disposition: comment.disposition}
 
 		end
-		render json: {name: student.name, sex: student.sex, comments: comments}
+		render json: {name: student.name, sex: student.sex, comments: comments, id: student.id}
 	end
 
 	def check_sex

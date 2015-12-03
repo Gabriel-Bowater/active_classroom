@@ -1,6 +1,6 @@
 <center>
 	<div id="student-profile-div">
-		<h3>Student: <%= @student.name %></h3>
+		<h3 id="student-profile-head">Student: <u id="stud_name"><%= @student.name %></u></h3>
 		<div id="student_profile_comments">
 			<h4 id="student_profile_comments_title">All comments for <%= @student.name %></h4>
 			<% @comments.each do |comment| %>
@@ -12,10 +12,39 @@
 				<p><%= comment.content %></p>
 			<% end %>
 		</div>
+		<div id="student_picture_div">
+			<img id="student_picture" src="/images/<%= @student.sex %>.png">
+			<button id="upload_student_image">Upload Custom image</button>
+		</div>
 		<div id="student_profile_comments_filters">
 			<h4>Filter comments.</h4>
+			<p>Filter by tag: </p>
+			<div id="tags-div"><p></p></div>
+			<p>Filter by disposition:</p>
+			<a class='comment-disp-filter' id='disp_happy'href="#"><img src="/images/happy.png"></a>
+			<a class='comment-disp-filter' id='disp_neutral'href="#"><img src="/images/neutral.png"></a>
+			<a class='comment-disp-filter' id='disp_angry'href="#"><img src="/images/angry.png"></a>
+
+
 			
+		</div>
+
+		<div id="student-classrooms">
+			<h4>Student classrooms</h4>
+			<p>this student is in the following classes:</p>
+			<ul>
+			<% @student_classrooms.each do |cr| %>
+				<li><a href="/classrooms/<%= cr[:id] %>"><%= cr[:name] %></a></li>
+			<% end %>
+			</ul>
 		</div>
 
 	</div>
 </center>
+
+<input type="hidden" id="page_id" value="profile_student">
+<input type="hidden" id="user_id" value="<%= @user.id %>">
+<script type="text/javascript">
+	setTags(<%= raw @tags %>);
+	setComments(<%= raw @json_comments %>);
+</script>

@@ -16,7 +16,7 @@ function studentClick(student){
 		getTeacherStudents(student)
 	} else {
 		stud_id = student.children('input').val();
-		getStudentInfo(stud_id);
+		getStudentInfo(stud_id, student);
 		$content.append("<div id='close-button'><button id='close-window'>Close</button></div>")
 	}
 	console.log(student.children('input').val())
@@ -134,25 +134,8 @@ function getTeacherStudents(student){
 }
 
 
-		// new_student.done(function(result){
-
-		// 	student.children('input').val(result)
-		// 	student.removeClass('unset')
-			// if (sex == "male"){
-			// 	student.children('img').attr('src', '/images/male.png')
-			// } else{
-			// 	student.children('img').attr('src', '/images/female.png')
-			// }
-		// 	updateStudents()
-		// 	$overlay.remove()
-		// })
-
-
-
-
-
-function getStudentInfo(id){
-	var student = $("#student_"+id)
+function getStudentInfo(id, student){
+	// var student = $("#student_"+id)
 	student_info = $.get('/students/info/'+ id)
 	student_info.done(function(result){
 		student_html = studentHtml(result)
@@ -167,8 +150,10 @@ function getStudentInfo(id){
 			var applied_tags = $(".applied-tag")
 			var tags_csv = ","
 			for (var i = 0; i < applied_tags.length; i++) {
-				tags_csv += $($(".applied-tag")[0]).text()+","
+				tags_csv += $($(".applied-tag")[i]).text()+","
 			};
+
+			console.log(student) // wrong window repoping after done
 
 			post_comment = $.post('/comments',
 														{teacher_id: $("#teacher_id").val(),
@@ -199,6 +184,12 @@ function getStudentInfo(id){
 				})
 			})
 		};
+
+		$(".student_profile_link").click(function(){
+			id = $(this).attr('id').slice(9)
+			window.location.href = "/students/"+id
+		})
+
 	})
 }
 
@@ -217,6 +208,7 @@ function studentHtml(result){
 		student_html+='<p id="comment-content">'+result.comments[i].content+'</p>'
 	};
 	student_html+="</div>"
+	student_html+= "<button class='student_profile_link' id='std_prof_"+result.id+"'>View full profile</button>"
 	student_html+="<div id='student_comment_form'>"
 	student_html+="<label>Title(optional): </label><input type='text' id='new_comment_title' name='new_comment_title'><br>"
 	student_html+="<textarea id='new_comment_text_area' name='new_comment_content'></textarea><br>"

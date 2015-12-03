@@ -25,7 +25,7 @@ function add_table(){
   var highest_index= 0;
 
   $(".tbl").each(function(){
-  	var index = parseInt($( this ).attr("id")[6])
+  	var index = parseInt($( this ).attr("id").slice(6))
   	if (index > highest_index){
   		highest_index = index
   	}
@@ -54,7 +54,7 @@ function add_student(){
   var extra_styling = "";
 	var highest_index = 0;
   $(".student").each(function(){
-  	var index = parseInt($( this ).attr("id")[8])
+  	var index = parseInt($( this ).attr("id").slice(8))
   	if (index > highest_index){
   		highest_index = index
   	}
@@ -226,5 +226,3 @@ $( document ).ready(function() {
 	})
   
 });
-
-        //'<tr id="positions_tracker'+ save_id +'"> <td>drag x:</td><td><input type="text" id="x' + save_id + '" class="console" /></td><td>drag y:</td><td><input type="text" id="y' + save_id + '" class="console" /></td></tr>''
