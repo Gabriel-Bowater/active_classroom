@@ -38,3 +38,21 @@ footer {
 footer a{
 	color: white
 }
+
+#float-header {
+	font-weight: bolder;
+	margin-top: -200px
+}
+
+.float-head-text{
+	color: white;
+	text-shadow: 2px 2px #000;
+}
+
+#float-header h1{
+	font-size: 4.5em
+}
+
+#first-divider{
+	margin-top: 58px
+}

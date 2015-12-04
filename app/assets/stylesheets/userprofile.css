@@ -68,7 +68,6 @@
 #student_profile_comments {
 	width: 70%;
 	float: left;
-	/*border: black solid 1px;*/
 	display: inline-block;
 	text-align: left;
 	padding-left: 5%;
@@ -93,7 +92,6 @@
 	float: left;
 	width: 31%;
 	float: left;
-	/*border: black solid 1px;*/
 	display: inline-block;
 	text-align: left;
 	padding-left: 5%;
