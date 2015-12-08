@@ -1,0 +1,10 @@
+<div id="crop-wrapper">
+	<center>
+		<%= form_for @student do |f| %>
+		  <%= f.cropbox :avatar, :width => 500 %>
+		  <%= f.crop_preview :avatar %>
+		  <%= f.hidden_field :update_type, :value => "crop_del"%>
+		  <%= f.submit 'Save' %>
+		<% end %>
+	</center>	
+</div>

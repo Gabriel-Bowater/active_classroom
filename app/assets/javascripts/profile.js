@@ -11,7 +11,6 @@ function addTag(){
 	$div.append($content);
 	$('body').append($overlay);
 
-
 	$div.prepend("<h3>Create new tag.</h3>")
 	$div.append("<p style='font-size:.8em'>A tag could be a subject, a test, or a disposition of a comment. Tags can only contain alphanumeric characters, hyphens, and apostrophes (no spaces)</p>")
 	$content.append("<br><label>Tag: </label><input type='text' id='new-tag-content'> <br>")

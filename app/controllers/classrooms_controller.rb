@@ -16,6 +16,7 @@ class ClassroomsController < ApplicationController
 			@classroom = Classroom.find(params[:id])
 			@tables = @classroom.tables_layout_csv.split(",").each_slice(6).to_a
 			@students = @classroom.students_layout_csv.split(",").each_slice(5).to_a
+			@student_images = get_student_thumbs(@students)
 		else
 			redirect_to "/"
 		end
@@ -24,7 +25,7 @@ class ClassroomsController < ApplicationController
 		else
 			@tags = []
 		end
-		
+
 	end
 
 	def destroy
@@ -59,8 +60,25 @@ class ClassroomsController < ApplicationController
 			@classroom = Classroom.find(params[:id])
 			@tables = @classroom.tables_layout_csv.split(",").each_slice(6).to_a
 			@students = @classroom.students_layout_csv.split(",").each_slice(5).to_a
+			@student_images = get_student_thumbs(@students)
 		else
 			redirect_to "/"
 		end
 	end
+
+ private
+
+ def get_student_thumbs(students)
+ 	return_hash = Hash.new
+ 	students.each do |student|
+ 		if student[1] != "unset"
+ 		std = Student.find(student[1])
+ 			if std.avatar_file_name
+ 				return_hash["#{student[1]}"] = std.avatar.url(:thumb)
+ 			end
+ 		end
+ 	end
+ 	return_hash.to_json
+ end
+
 end

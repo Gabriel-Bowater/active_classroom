@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 			@tags = []
 		end
 		@classrooms = Classroom.where(teacher_id: @user.id)
-		@students = Student.where(teacher_id: @user.id)
+		@students = Student.where(teacher_id: @user.id).order("name")
 		@comments = Comment.where(teacher_id: @user.id)
 		@json_comments = @comments.to_json
 
@@ -51,7 +51,6 @@ class UsersController < ApplicationController
 		else
 			render text: params
 		end
-
 	end
 
 end

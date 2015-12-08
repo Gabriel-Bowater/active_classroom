@@ -31,10 +31,7 @@ function placeTables(tables){
 		append_draggable(table, '.tbl', tab_arr[0] )
 		if (tab_arr[2] == 'vert'){
 			tb_id = "#"+tab_arr[0]
-				var new_height = $( tb_id ).css("width")
-  			var new_width = $( tb_id ).css("height")
-  			$( tb_id ).css("height", new_height)
-  			$( tb_id ).css("width", new_width)
+  		$(tb_id).css("transform", "rotate(90deg)")
 		}
 		$("#"+tab_arr[0]).css("left", tab_arr[3])
 		$("#"+tab_arr[0]).css("top", tab_arr[4])
@@ -47,6 +44,8 @@ function placeTables(tables){
 }
 
 function placeStudents(students){
+	var std_photos = $.parseJSON($("#student_images").val())
+
 	$.each(students, function(){
 		stud_arr = $(this)
 		var unset = "";
@@ -56,7 +55,7 @@ function placeStudents(students){
 
 	  var student = '<div id="' + stud_arr[0] + '"class="student '+ unset +'" style="display:absolute;float:left;z-index:' + stud_arr[4] + ';margin-top:-100px">';
 	  student += '<img class="img_student" src="/images/unknown_student.png" />';
-	  student += '<input type="hidden" id="' + stud_arr[0] + 'db_id" value="'+ stud_arr[1] +'">';
+	  student += '<input type="hidden" id="' + stud_arr[0] + 'db_id" value="'+ stud_arr[1] +'" class="std_db_id">';
 	  student += '</div>';
 	  append_draggable(student, '.student', stud_arr[0])
 	  $("#"+stud_arr[0]).css("left", stud_arr[2]);
@@ -65,17 +64,26 @@ function placeStudents(students){
 	  	$("#"+stud_arr[0]).draggable('disable');
 	  }
 	  if (stud_arr[1] != "unset"){
-	  	$.get('/student/check_sex/'+stud_arr[1]+":"+stud_arr[0]).done(function(result){
-	  		console.log(result)
-	  		if (result.sex=="male"){
-	  			$("#"+result.page_id+" img").attr("src", "/images/male.png")
-	  		} else {
-	  			$("#"+result.page_id+" img").attr("src", "/images/female.png")	  			
-	  		}
-	  		$("#"+result.page_id).append("<p class='student-name'>"+result.name+"</p>")
-	  	});
-	  }
 
+	  	if (std_photos.hasOwnProperty(stud_arr[1])){
+	  		console.log(std_photos[stud_arr[1]])
+	  		$("#"+stud_arr[0]+" img").attr("src", std_photos[stud_arr[1]]).addClass("set_std_img")
+	  		$.get('/student/check_sex/'+stud_arr[1]+":"+stud_arr[0]).done(function(result){
+		  		$("#"+result.page_id).append("<p class='student-name'>"+result.name+"</p>")
+		  	});
+	  	} else {
+
+		  	$.get('/student/check_sex/'+stud_arr[1]+":"+stud_arr[0]).done(function(result){
+		  		if (result.sex=="male"){
+		  			$("#"+result.page_id+" img").attr("src", "/images/male.png")
+		  		} else {
+		  			$("#"+result.page_id+" img").attr("src", "/images/female.png")	  			
+		  		}
+		  		$("#"+result.page_id).append("<p class='student-name'>"+result.name+"</p>")
+
+		  	});
+		  }
+	  }
 	})
 }
 
@@ -130,13 +138,4 @@ $( document ).ready(function() {
 		$(".student-name").slideToggle();
 	})
 
-	// $("#highlight-unset").mouseenter(function(){
-	// 	console.log("mouseover")
-	// 	$(".unset").addClass("glow");
-	// })
-
-	// $("#highlight-unset").mouseleave(function(){
-	// 	console.log("mouseover")
-	// 	$(".unset").removeClass("glow");
-	// })
 });

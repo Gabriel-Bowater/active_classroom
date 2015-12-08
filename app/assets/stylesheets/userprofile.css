@@ -61,61 +61,11 @@
 	width:100%;
 }
 
+.profile-student-set-img{
+	border-radius: 50%;
+	width: 85%;
+}
+
 .single-tag {
 	display: none;
-}
-
-#student_profile_comments {
-	width: 70%;
-	float: left;
-	display: inline-block;
-	text-align: left;
-	padding-left: 5%;
-	min-height: 300px;
-	max-height: 450px;
-	overflow: auto;
-}
-
-#student_profile_comments_filters {
-	width: 30%;
-	float: left;
-	border: black solid 1px;
-	display: inline-block;
-	min-height: 150px
-}
-.student-profile-header,
-#student_profile_comments_title {
-	margin-left: -3%
-}
-
-#student-classrooms {
-	float: left;
-	width: 31%;
-	float: left;
-	display: inline-block;
-	text-align: left;
-	padding-left: 5%;
-}
-
-.comment-disp-filter img {
-	width: 57px
-}
-
-.greyed-out {
-  filter: gray;
-  filter: grayscale(1);
-  -webkit-filter: grayscale(1); 
-}
-
-#student_picture{
-	width: 120px
-}
-
-#student_picture_div{
-	margin-top: -50px
-}
-
-.stud-back-butt{
-	float: right;
-	margin-right: 15px
 }

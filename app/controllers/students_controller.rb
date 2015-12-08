@@ -65,4 +65,31 @@ class StudentsController < ApplicationController
 		end
 		render json: {array: return_array}
 	end
+
+	def update
+		@student = Student.find(params[:id])
+		type = params[:student][:update_type]
+		if type == "img_del"
+			@student.avatar = nil
+			@student.save
+			redirect_to "/students/#{@student.id}"
+		elsif type == "img_init"
+			@student.update( student_params )
+			render :crop
+		else 
+			@student.update( student_params )
+			redirect_to "/students/#{@student.id}"
+		end
+
+	end
+
+	private
+
+	def student_params
+	  params.require(:student).permit(:avatar, 
+	  	:avatar_original_w, :avatar_original_h, :avatar_box_w,
+	  	:avatar_aspect, :avatar_crop_x, :avatar_crop_y, :avatar_crop_w,
+	  	:avatar_crop_h )
+	end
+
 end

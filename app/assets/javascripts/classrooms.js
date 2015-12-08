@@ -3,18 +3,14 @@ var desk_size_large = false
 
 function rotate(to_rotate){
 	console.log(to_rotate)
-	var new_height = $( to_rotate ).css("width")
-  var new_width = $( to_rotate ).css("height")
-  $( to_rotate ).css("height", new_height)
-  $( to_rotate ).css("width", new_width)
-  // var classes = $( to_rotate).attr('class').split(" ")
-  // if ($.inArray('horiz', classes) > -1){
   if ($(to_rotate).hasClass('horiz')){
   	$(to_rotate).removeClass('horiz')
   	$(to_rotate).addClass('vert')
+  	$(to_rotate).css("transform", "rotate(90deg)")
   } else {
   	$(to_rotate).removeClass('vert')
   	$(to_rotate).addClass('horiz')
+  	$(to_rotate).css("transform", "rotate(0deg)")
   }
 }
 
@@ -79,8 +75,6 @@ function add_student(){
 
 function append_draggable(html, obj_class, save_id) {
   $('#classroom').append(html)
-  // tracking_info = '<tr id="positions_tracker_'+ save_id +'"><td>'+ save_id + '</td> <td>drag x:</td><td><input type="text" id="x_' + save_id + '" class="console" value="0"/></td><td>drag y:</td><td><input type="text" id="y_' + save_id + '" class="console" value="0"/></td></tr>'
-  // $('#tracker_console').append(tracking_info)
 
   $(obj_class).draggable({
     appendTo: '#'+save_id,
@@ -95,13 +89,10 @@ function append_draggable(html, obj_class, save_id) {
       $("#y_" + $( this ).attr('id')).val(ui.position.top);
       $( this ).css("opacity", "0.6");
     },
-    containment: "parent"
+    containment: $("#classroom-containment")
 
   });
 }
-
-
-
 
 $( document ).ready(function() {
 
@@ -211,7 +202,6 @@ $( document ).ready(function() {
 	  var to_rotate = '#table_' + n;
 	  rotate(to_rotate);
 	});
-
 
 	$('#delete_classroom').click(function(){
 		html_block = "<div style='display:none' id='delete_confirm'><p style='font-size: 0.7em'>Are you sure you want to delete this classroom? It will not be recoverable. Students will not be deleted and can be added to other classes. To delete a student, go to their profile page.</p>"

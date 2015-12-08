@@ -13,8 +13,21 @@
 			<% end %>
 		</div>
 		<div id="student_picture_div">
-			<img id="student_picture" src="/images/<%= @student.sex %>.png">
-			<button id="upload_student_image">Upload Custom image</button>
+			<% if !@student.avatar_file_name %>
+				<img id="student_picture" src="/images/<%= @student.sex %>.png"><br>
+				<label id="upload_student_image">Upload Custom image</label>
+				<%= form_for @student, url: "/students/#{@student.id}", html: { multipart: true } do |form| %>
+	  			<%= form.file_field :avatar %>
+	  			<%= form.hidden_field :update_type, :value => "img_init"%>
+	  			<%= form.submit "Continue" %>
+				<% end %>
+			<% else %>
+				<%= image_tag @student.avatar.url(:medium), id: "std_prof_img" %>
+					<%= form_for @student, url: "/students/#{@student.id}", html: { multipart: true } do |form| %>
+	  			<%= form.hidden_field :update_type, :value => "img_del"%>
+	  			<%= form.submit "Remove Image"%>
+				<% end %>
+			<% end %>
 		</div>
 		<div id="student_profile_comments_filters">
 			<h4>Filter comments.</h4>

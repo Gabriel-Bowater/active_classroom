@@ -31,10 +31,14 @@
 					<div class="profile-student-icon" id="stud_<%= student.id -%>">
 					<% #TODO - add logic to display personalized picture if existant %>
 					<a href="/students/<%= student.id %>">
-					<% if student.sex == "male" %>
-						<img class="profile-student-icon-img" src="/images/male.png">
+					<% if student.avatar_file_name %>
+						<img class="profile-student-set-img" src="<%= student.avatar.url(:medium) %>">
 					<% else %>
-						<img class="profile-student-icon-img" src="/images/female.png">		
+						<% if student.sex == "male" %>
+							<img class="profile-student-icon-img" src="/images/male.png">
+						<% else %>
+							<img class="profile-student-icon-img" src="/images/female.png">		
+						<% end %>
 					<% end %>
 					<p><%= student.name %></p>
 					</a>
