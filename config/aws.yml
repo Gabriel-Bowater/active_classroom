@@ -1,0 +1,17 @@
+default: &default  
+  access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  bucket: activeclassroom
+  region: ap-southeast-2
+
+development:
+  access_key_id: <%= Rails.application.secrets.aws_access_key_id %>
+  secret_access_key: <%= Rails.application.secrets.aws_secret_key %>
+  bucket: activeclassroom
+  region: ap-southeast-2
+
+production:
+  <<: *default
+
+testing:
+  <<: *default

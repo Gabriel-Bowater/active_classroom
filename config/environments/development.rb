@@ -39,4 +39,16 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'activeclassroom',
+      :access_key_id => Rails.application.secrets.aws_access_key_id,
+      :secret_access_key => Rails.application.secrets.aws_secret_key
+    },
+    :url =>':s3_domain_url',
+    :path => '/:class/:attachment/:id_partition/:style/:filename',
+  }
+
 end
