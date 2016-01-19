@@ -204,6 +204,17 @@ function studentCommentsByDisp(disp){
 
 }
 
+function studentCommentsFollowUp(comments){
+	var comment_ids = [];
+	$(comments).each(function(){
+		comment_ids.push(this.id);
+	})
+	comments_check = $.get("/comments/follow_ups_check/1", {comments_ids: comment_ids})
+	comments_check.done(function(result){
+		alert(result)
+	})
+}
+
 $( document ).ready(function() {
 	$("#add_tag").click(function(){
 		addTag();
@@ -212,6 +223,12 @@ $( document ).ready(function() {
 	$(".comment-disp-filter").click(function(e){
 		e.preventDefault();
 		studentCommentsByDisp($(this).attr("id").slice(5))
+	})
+
+	$("#follow_up_button").click(function(e){
+		e.preventDefault();
+		studentCommentsFollowUp(comments)
+		// TODO Decide what to send in. Write function
 	})
 
 	if ($("#page_id").val() == "profile" || $("#page_id").val() == "profile_student"){

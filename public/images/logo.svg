@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg5351"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="New document 4">
+  <defs
+     id="defs5353" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="234.25831"
+     inkscape:cy="367.53365"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1317"
+     inkscape:window-height="744"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       orientation="0,1"
+       position="391.93919,663.67022"
+       id="guide5908" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5356">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 119.03351,765.47886 -23.069019,20.20305 566.695579,0 -23.06903,-22.22335 z"
+       id="path5372"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/gabriel/Desktop/active_classroom/public/images/logo-char2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#424242;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m 117.1777,771.53978 0,-289.91379 524.26916,0 -1.01015,287.89348 z"
+       id="path5374"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/gabriel/Desktop/active_classroom/public/images/logo-char2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99999994000000003px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.78431374"
+       d="m 272.68178,531.46529 -106.00662,199.29602 69.66092,-1.15869 38.28015,-44.24892 42.23495,46.5663 69.02709,-2.20819 z"
+       id="path5378"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="/home/gabriel/Desktop/active_classroom/public/images/logo-char2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99999994000000003px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.78431374"
+       d="m 533.03064,598.1998 39.39595,-27.28704 C 500.11927,462.6721 397.89092,555.47894 412.95447,653.57311 c 7.93181,55.4942 52.85855,103.20057 119.06602,76.86383 28.71246,-11.42156 38.09064,-39.36895 46.46702,-59.82158 L 536.0611,659.07085 c -8.66633,28.95073 -28.9733,32.64346 -46.62648,23.65581 -39.80911,-21.85357 -37.65956,-89.52352 0.64418,-107.23425 12.45947,-5.23314 26.85293,2.4529 42.95184,22.70739 z"
+       id="path5380-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccsccccc"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/gabriel/Desktop/active_classroom/public/images/logo-char2.png" />
+  </g>
+</svg>

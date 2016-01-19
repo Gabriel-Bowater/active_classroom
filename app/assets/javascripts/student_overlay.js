@@ -155,6 +155,7 @@ function getStudentInfo(id, student){
 				tags_csv += $($(".applied-tag")[i]).text()+","
 			};
 
+			alert($("#art-checkbox").prop('checked'))
 			console.log(student) // wrong window repoping after done
 
 			post_comment = $.post('/comments',
@@ -163,10 +164,13 @@ function getStudentInfo(id, student){
 														title: $('#new_comment_title').val(),
 														content: $('#new_comment_text_area').val(),
 														disposition: $('.selected_disposition').attr('for'),
-														tags_csv: tags_csv})
+														tags_csv: tags_csv,
+														action_required: $("#art-checkbox").prop('checked')
+														})
 			post_comment.done(function(result){
 				$("#overlay").remove();
 				studentClick(student);
+				console.log(result)
 			})
 		});
 
@@ -217,6 +221,7 @@ function studentHtml(result){
 	student_html+='<div id="comment_dispostion"><input type="radio" name="disposition" id="angry" value="angry" /><label for="angry"><img src="/images/angry.png" alt="angry face" /></label>'
 	student_html+='<input type="radio" name="disposition" id="neutral" value="neutral" /><label for="neutral"><img src="/images/neutral.png" alt="neutral face" /></label>'
 	student_html+='<input type="radio" name="disposition" id="happy" value="happy" /><label for="happy"><img src="/images/happy.png" alt="happy face" /></label>'
+	student_html+='<input type="checkbox" id="art-checkbox">Follow-up Required'
 	student_html+='</div>'
 	student_html+='<div id="applied_tags"></div>'
 	student_html+= tagsDropdown(tags)
